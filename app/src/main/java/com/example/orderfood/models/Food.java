@@ -5,16 +5,16 @@ public class Food {
     private String name;
     private String price;
     private String image;
-    private int menuId;
 
-    public Food(int id, String name, String price, String image, int menuId) {
+    public Food(int id, String name, String price, String image) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.image = image;
-        this.menuId = menuId;
     }
-    public Food(){}
+
+    public Food() {
+    }
 
     public int getId() {
         return id;
@@ -48,11 +48,4 @@ public class Food {
         this.image = image;
     }
 
-    public int getMenuId() {
-        return menuId;
-    }
-
-    public void setMenuId(int menuId) {
-        this.menuId = menuId;
-    }
 }

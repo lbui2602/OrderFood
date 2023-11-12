@@ -5,13 +5,26 @@ import java.util.List;
 public class Cart {
     private int id;
     private int userId;
-    private List<Integer> listFoodId;
-    public Cart(){}
+    private int foodId;
+    private int quantity;
 
-    public Cart(int id, int userId) {
+    public int getQuantity() {
+
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public Cart(int id, int userId, int foodId, int quantity) {
         this.id = id;
         this.userId = userId;
-        this.listFoodId=null;
+        this.foodId = foodId;
+        this.quantity = quantity;
+    }
+
+    public Cart() {
     }
 
     public int getId() {
@@ -30,17 +43,11 @@ public class Cart {
         this.userId = userId;
     }
 
-    public List<Integer> getFoodId() {
-        return listFoodId;
+    public int getFoodId() {
+        return foodId;
     }
 
-    public void setFoodId(List<Integer> foodId) {
-        this.listFoodId = foodId;
-    }
-
-    public Cart(int id, int userId, List<Integer> listFoodId) {
-        this.id = id;
-        this.userId = userId;
-        this.listFoodId = listFoodId;
+    public void setFoodId(int foodId) {
+        this.foodId = foodId;
     }
 }

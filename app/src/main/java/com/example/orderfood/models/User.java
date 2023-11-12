@@ -11,13 +11,12 @@ public class User {
     private String image;
     private String phoneNumber;
     private String address;
-    private int cartId;
 
-    private int favoriteId;
-    public User(){}
+    public User() {
+    }
 
     public User(int id, String username, String firstname, String lastname,
-                String password, String image, String phoneNumber, String address, int cartId, int favoriteId) {
+                String password, String image, String phoneNumber, String address) {
         this.id = id;
         this.username = username;
         this.firstname = firstname;
@@ -26,8 +25,6 @@ public class User {
         this.image = image;
         this.phoneNumber = phoneNumber;
         this.address = address;
-        this.cartId = cartId;
-        this.favoriteId = favoriteId;
     }
 
     public int getId() {
@@ -94,19 +91,4 @@ public class User {
         this.address = address;
     }
 
-    public int getCartId() {
-        return cartId;
-    }
-
-    public void setCartId(int cartId) {
-        this.cartId = cartId;
-    }
-
-    public int getFavoriteId() {
-        return favoriteId;
-    }
-
-    public void setFavoriteId(int favoriteId) {
-        this.favoriteId = favoriteId;
-    }
 }

@@ -1,13 +1,12 @@
 package com.example.orderfood.models;
 
-import java.util.List;
-
-public class Favorite {
+public class MenuFood {
     private int id;
-    private int userId;
-
     private int foodId;
-    public Favorite(){}
+    private int menuId;
+
+    public MenuFood() {
+    }
 
     public int getId() {
         return id;
@@ -15,14 +14,6 @@ public class Favorite {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 
     public int getFoodId() {
@@ -33,9 +24,17 @@ public class Favorite {
         this.foodId = foodId;
     }
 
-    public Favorite(int id, int userId, int foodId) {
+    public int getMenuId() {
+        return menuId;
+    }
+
+    public void setMenuId(int menuId) {
+        this.menuId = menuId;
+    }
+
+    public MenuFood(int id, int foodId, int menuId) {
         this.id = id;
-        this.userId = userId;
         this.foodId = foodId;
+        this.menuId = menuId;
     }
 }

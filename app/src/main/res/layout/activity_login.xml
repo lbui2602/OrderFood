@@ -1,30 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    android:orientation="vertical"
+    android:background="@color/background"
+    tools:context=".uis.LoginActivity">
     <TextView
         android:id="@+id/tvLogin"
         android:layout_marginTop="@dimen/_100sdp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:textSize="@dimen/_30sdp"
         android:text="LOGIN"
+        android:layout_gravity="center"
         android:textColor="#419F7D"
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <EditText
+        android:id="@+id/edtUsername"
+        android:layout_marginTop="@dimen/_30sdp"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_30sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="@dimen/_40sdp"
         android:layout_marginRight="@dimen/_10sdp"
         android:layout_marginLeft="@dimen/_10sdp"
-        android:background="@drawable/edit_text_shape"
-        app:layout_constraintTop_toBottomOf="@+id/tvLogin" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:background="@drawable/edit_text_shape" />
+    <EditText
+        android:id="@+id/edtPassword"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:background="@drawable/edit_text_shape" />
+    <TextView
+        android:id="@+id/tvRegister"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginRight="@dimen/_15sdp"
+        android:layout_gravity="right"
+        android:text="Do you want register?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/btnLogin"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_20sdp"
+        android:text="LOGIN"
+        android:background="@drawable/button_shape"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"/>
+</LinearLayout>

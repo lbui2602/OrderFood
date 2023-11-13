@@ -15,16 +15,17 @@ import java.io.InputStreamReader;
 public class DBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "food.db";
     private static final int DATABASE_VERSION = 1;
-    private final Context context;
+    private Context context;
 
-    public DBHelper(Context context) {
+    public DBHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
         getReadableDatabase();
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db) {
+    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        Log.d("TAG", "onCreate: ");
         try {
             InputStream inputStream = context.getAssets().open("database.sql");
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
@@ -43,10 +44,10 @@ public class DBHelper extends SQLiteOpenHelper {
             for (String statement : statements) {
                 Log.d("DatabaseHelper", statement);
                 if (statement.trim().length() > 0)
-                    db.execSQL(statement);
+                    sqLiteDatabase.execSQL(statement);
             }
         } catch (IOException e) {
-            Log.d("TAG", "Error: "+e.toString());
+            Log.d("TAG", "Error: " + e.toString());
         }
     }
 

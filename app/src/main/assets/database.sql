@@ -1,4 +1,3 @@
-
 CREATE TABLE User (
     user_id INTEGER PRIMARY KEY AUTOINCREMENT,
     username TEXT,
@@ -21,7 +20,6 @@ CREATE TABLE Food (
     menu_id INTEGER,
     FOREIGN KEY (menu_id) REFERENCES Menu (menu_id)
 );
-
 CREATE TABLE Cart (
     user_id INTEGER,
     food_id INTEGER,
@@ -29,14 +27,12 @@ CREATE TABLE Cart (
     FOREIGN KEY (user_id) REFERENCES User (user_id),
     FOREIGN KEY (food_id) REFERENCES Food (food_id)
 );
-
 CREATE TABLE Favourite (
     user_id INTEGER,
     food_id INTEGER,
     FOREIGN KEY (user_id) REFERENCES User (user_id),
     FOREIGN KEY (food_id) REFERENCES Food (food_id)
 );
-
 INSERT INTO User (username, first_name, last_name, password, image, phone_number, address)
 VALUES ('lbui2602', 'Bui', 'Luong', '12345678', NULL, '0376511565', 'Quoc Oai, Ha Noi');
 INSERT INTO User (username, first_name, last_name, password, image, phone_number, address)
@@ -47,14 +43,12 @@ INSERT INTO User (username, first_name, last_name, password, image, phone_number
 VALUES ('tutam2003', 'Nguyen', 'Tam', '12345678', NULL, '0376511565', 'Dong Anh, Ha Noi');
 INSERT INTO User (username, first_name, last_name, password, image, phone_number, address)
 VALUES ('maisao2003', 'Mai', 'Sao', '12345678', NULL, '0376511565', 'Dong Chau, Thai Binh');
-
 INSERT INTO Menu (menu_id, name)
 VALUES (1,'Chicken');
 INSERT INTO Menu (menu_id, name)
 VALUES (2,'Korean');
 INSERT INTO Menu (menu_id, name)
 VALUES (3,'Drink');
-
 INSERT INTO Food (food_id, name, price, image, menu_id)
 VALUES (1,'Gà không xương nướng','299.000 đ', 'https://donchicken.vn/pub/media/catalog/product/cache/c430e3e26517992a27628ce5995d6769/g/_/g_n_ng_3-1.jpg',1);
 INSERT INTO Food (food_id, name, price, image, menu_id)
@@ -82,8 +76,7 @@ VALUES (12,'Đùi gà rán','169.000 đ', 'https://donchicken.vn/pub/media/catal
 INSERT INTO Food (food_id, name, price, image, menu_id)
 VALUES (27,'Gà Dakgangjeong','239.000 đ', 'https://donchicken.vn/pub/media/catalog/product/cache/c430e3e26517992a27628ce5995d6769/d/a/dakgangjeong_l_1.jpg',1);
 INSERT INTO Food (food_id, name, price, image, menu_id)
-VALUES (27,'Gà phô mai tuyết','319.000 đ', 'https://donchicken.vn/pub/media/catalog/product/cache/c430e3e26517992a27628ce5995d6769/g/_/g_r_n_3-1_1.jpg',1);
-
+VALUES (32,'Gà phô mai tuyết','319.000 đ', 'https://donchicken.vn/pub/media/catalog/product/cache/c430e3e26517992a27628ce5995d6769/g/_/g_r_n_3-1_1.jpg',1);
 INSERT INTO Food (food_id, name, price, image, menu_id)
 VALUES (13,'Xúc xích hầm','229.000 đ', 'https://donchicken.vn/pub/media/catalog/product/cache/c430e3e26517992a27628ce5995d6769/x/u/xucxichhambacon.jpg',2);
 INSERT INTO Food (food_id, name, price, image, menu_id)
@@ -107,7 +100,7 @@ VALUES (22,'Bánh xèo kim chi','109.000 đ', 'https://donchicken.vn/pub/media/c
 INSERT INTO Food (food_id, name, price, image, menu_id)
 VALUES (23,'Miến trộn Hàn Quốc','129.000 đ', 'https://donchicken.vn/pub/media/catalog/product/cache/c430e3e26517992a27628ce5995d6769/m/i/mientronhq.jpg',2);
 INSERT INTO Food (food_id, name, price, image, menu_id)
-VALUES (23,'Cơm trộn hải sản','140.000 đ', 'https://donchicken.vn/pub/media/catalog/product/cache/c430e3e26517992a27628ce5995d6769/c/o/comtronhaisan.jpg',2);
+VALUES (33,'Cơm trộn hải sản','140.000 đ', 'https://donchicken.vn/pub/media/catalog/product/cache/c430e3e26517992a27628ce5995d6769/c/o/comtronhaisan.jpg',2);
 INSERT INTO Food (food_id, name, price, image, menu_id)
 VALUES (24,'Cơm trộn thịt bò','140.000 đ', 'https://donchicken.vn/pub/media/catalog/product/cache/c430e3e26517992a27628ce5995d6769/c/o/comtronbo.jpg',2);
 INSERT INTO Food (food_id, name, price, image, menu_id)
@@ -116,7 +109,6 @@ INSERT INTO Food (food_id, name, price, image, menu_id)
 VALUES (26,'Canh kim chi','105.000 đ', 'https://donchicken.vn/pub/media/catalog/product/cache/c430e3e26517992a27628ce5995d6769/c/a/canh_kim_chi_3.jpg',2);
 INSERT INTO Food (food_id, name, price, image, menu_id)
 VALUES (28,'Cơm chiên kim chi','110.000 đ', 'https://donchicken.vn/pub/media/catalog/product/cache/c430e3e26517992a27628ce5995d6769/c/o/comkimchi.jpg',2);
-
 INSERT INTO Food (food_id, name, price, image, menu_id)
 VALUES (29,'Nước lọc','10.000 đ', 'https://donchicken.vn/pub/media/catalog/product/cache/c430e3e26517992a27628ce5995d6769/a/q/aquafina_500ml.png',3);
 INSERT INTO Food (food_id, name, price, image, menu_id)
@@ -124,12 +116,9 @@ VALUES (30,'Pepsi','20.000 đ', 'https://donchicken.vn/pub/media/catalog/product
 INSERT INTO Food (food_id, name, price, image, menu_id)
 VALUES (31,'Cocacola','20.000 đ', 'https://tomitamart.vn/public/media//00400.jpg',3);
 INSERT INTO Food (food_id, name, price, image, menu_id)
-VALUES (31,'Bò húc','20.000 đ', 'https://hangnhapkhauthailan.com/images/hanghoa/bnuoc-tang-luc-bo-huc-lon-24-1-N7C.jpg',3);
-
-
+VALUES (34,'Bò húc','20.000 đ', 'https://hangnhapkhauthailan.com/images/hanghoa/bnuoc-tang-luc-bo-huc-lon-24-1-N7C.jpg',3);
 INSERT INTO Cart (user_id, food_id, quantity)
 VALUES (1, 1, 1);
-
 INSERT INTO Favourite (user_id, food_id)
 VALUES (1, 2);
 

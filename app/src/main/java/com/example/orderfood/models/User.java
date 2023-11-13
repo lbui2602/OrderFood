@@ -1,8 +1,9 @@
 package com.example.orderfood.models;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class User {
+public class User implements Serializable {
     private int id;
     private String username;
     private String firstname;
@@ -18,6 +19,16 @@ public class User {
     public User(int id, String username, String firstname, String lastname,
                 String password, String image, String phoneNumber, String address) {
         this.id = id;
+        this.username = username;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.password = password;
+        this.image = image;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+    }
+
+    public User(String username, String firstname, String lastname, String password, String image, String phoneNumber, String address) {
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;

@@ -18,16 +18,14 @@
             android:text="Hi,"
             android:textColor="@color/black"
             android:textSize="@dimen/_25sdp" />
-
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_3sdp"
             android:text="What do you want to order today?"
             android:textColor="@color/black"
             android:textSize="@dimen/_10sdp" />
-
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,7 +33,6 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_20sdp"
             app:cardCornerRadius="@dimen/_30sdp">
-
             <androidx.appcompat.widget.SearchView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

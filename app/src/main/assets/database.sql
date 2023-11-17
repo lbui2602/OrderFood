@@ -50,13 +50,13 @@ VALUES (2,'Korean');
 INSERT INTO Menu (menu_id, name)
 VALUES (3,'Drink');
 INSERT INTO Food (food_id, name, price, image, menu_id)
-VALUES (1,'Gà không xương nướng','299.000 đ', 'https://donchicken.vn/pub/media/catalog/product/cache/c430e3e26517992a27628ce5995d6769/g/_/g_n_ng_3-1.jpg',1);
+VALUES (1,'Gà không xương nướng','299.000 đ', 'https://donchicken.vn/pub/media/catalog/product/cache/8872124951f387c8ded3f228faa55bea/g/a/ganuongkoxuong.jpg',1);
 INSERT INTO Food (food_id, name, price, image, menu_id)
-VALUES (2,'Gà nướng tỏi','299.000 đ', 'https://donchicken.vn/pub/media/catalog/product/cache/c430e3e26517992a27628ce5995d6769/g/_/g_n_ng_6-1.jpg',1);
+VALUES (2,'Gà nướng tỏi','299.000 đ', 'https://donchicken.vn/pub/media/catalog/product/cache/8872124951f387c8ded3f228faa55bea/g/a/ganuongtoi.jpg',1);
 INSERT INTO Food (food_id, name, price, image, menu_id)
-VALUES (3,'Gà nướng cay','299.000 đ', 'https://donchicken.vn/pub/media/catalog/product/cache/c430e3e26517992a27628ce5995d6769/g/_/g_n_ng_9-1_1.jpg',1);
+VALUES (3,'Gà nướng cay','299.000 đ', 'https://donchicken.vn/pub/media/catalog/product/cache/8872124951f387c8ded3f228faa55bea/g/a/ganuongcay.jpg',1);
 INSERT INTO Food (food_id, name, price, image, menu_id)
-VALUES (4,'Gà nướng','269.000 đ', 'https://donchicken.vn/pub/media/catalog/product/cache/c430e3e26517992a27628ce5995d6769/g/_/g_n_ng_9-1.jpg',1);
+VALUES (4,'Gà nướng','269.000 đ', 'https://donchicken.vn/pub/media/catalog/product/cache/8872124951f387c8ded3f228faa55bea/g/_/g_n_ng_9-1.jpg',1);
 INSERT INTO Food (food_id, name, price, image, menu_id)
 VALUES (5,'Gà rán không xương','319.000 đ', 'https://donchicken.vn/pub/media/catalog/product/cache/c430e3e26517992a27628ce5995d6769/g/_/g_r_n_1-1_1.jpg',1);
 INSERT INTO Food (food_id, name, price, image, menu_id)

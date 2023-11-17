@@ -25,7 +25,8 @@
         android:layout_height="@dimen/_40sdp"
         android:layout_marginRight="@dimen/_10sdp"
         android:layout_marginLeft="@dimen/_10sdp"
-        android:background="@drawable/edit_text_shape" />
+        android:background="@drawable/edit_text_shape"
+        android:paddingLeft="@dimen/_10sdp"/>
     <EditText
         android:id="@+id/edtPassword"
         android:layout_marginTop="@dimen/_20sdp"
@@ -33,7 +34,8 @@
         android:layout_height="@dimen/_40sdp"
         android:layout_marginRight="@dimen/_10sdp"
         android:layout_marginLeft="@dimen/_10sdp"
-        android:background="@drawable/edit_text_shape" />
+        android:background="@drawable/edit_text_shape"
+        android:paddingLeft="@dimen/_10sdp"/>
     <TextView
         android:id="@+id/tvRegister"
         android:layout_marginTop="@dimen/_8sdp"

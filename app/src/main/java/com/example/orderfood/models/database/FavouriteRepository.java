@@ -40,7 +40,7 @@ public class FavouriteRepository {
 
         List<Food> result = new ArrayList<>();
         for (Integer i : list) {
-            Food byId = foodRepository.getById(i);
+            Food byId = foodRepository.getById(userId);
             result.add(byId);
         }
         return result;

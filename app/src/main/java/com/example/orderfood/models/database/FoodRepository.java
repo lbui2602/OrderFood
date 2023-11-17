@@ -19,7 +19,7 @@ public class FoodRepository {
     }
 
     public Food getById(int id) {
-        String statement = "SELECT * FROM " + TABLE_NAME + " WHERE id = ?";
+        String statement = "SELECT * FROM " + TABLE_NAME + " WHERE user_id = ?";
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
 

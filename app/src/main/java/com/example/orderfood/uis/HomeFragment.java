@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import com.example.orderfood.R;
 import com.example.orderfood.models.database.DBHelper;
 import com.example.orderfood.models.database.FoodRepository;
+import com.example.orderfood.models.database.PrefManager;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -79,6 +80,8 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         dbHelper=new DBHelper(getContext());
+        String username=PrefManager.getString(getContext(),"username");
+        Log.d("TAG", "onViewCreated: "+username);
         llChicken=view.findViewById(R.id.llChicken);
         llKorean=view.findViewById(R.id.llKorean);
         llDrink=view.findViewById(R.id.llDrink);

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -93,14 +94,14 @@ public class FavoriteFragment extends Fragment {
         rcv = view.findViewById(R.id.rcvFavoriteFood);
         dbHelper = new DBHelper(getContext());
         favouriteRepository = new FavouriteRepository(dbHelper);
+        userRepository=new UserRepository(dbHelper);
         String username = PrefManager.getString(getContext(), "username");
-        User user = new User();
-        user = userRepository.getUserByUsername(username);
-//        favoriteList = favouriteRepository.getFoodsByUserId(user.getId());
-//        foodAdapter = new FoodAdapter(favoriteList);
-//        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this.getContext(),RecyclerView.VERTICAL,false);
-//        GridLayoutManager gridLayoutManager =new GridLayoutManager(this.getContext(),2);
-//        rcv.setLayoutManager(gridLayoutManager);
-//        rcv.setAdapter(foodAdapter);
+        User user=userRepository.getUserByUsername(username);
+        favoriteList = favouriteRepository.getFoodsByUserId(user.getId());
+        foodAdapter = new FoodAdapter(favoriteList);
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this.getContext(),RecyclerView.VERTICAL,false);
+        GridLayoutManager gridLayoutManager =new GridLayoutManager(this.getContext(),2);
+        rcv.setLayoutManager(gridLayoutManager);
+        rcv.setAdapter(foodAdapter);
     }
 }

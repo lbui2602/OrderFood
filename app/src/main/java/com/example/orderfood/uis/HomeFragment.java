@@ -2,13 +2,21 @@ package com.example.orderfood.uis;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.orderfood.R;
+import com.example.orderfood.models.database.DBHelper;
+import com.example.orderfood.models.database.FoodRepository;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +24,8 @@ import com.example.orderfood.R;
  * create an instance of this fragment.
  */
 public class HomeFragment extends Fragment {
+    DBHelper dbHelper;
+    CardView cvChicken;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -62,5 +72,23 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        dbHelper=new DBHelper(getContext());
+        cvChicken=view.findViewById(R.id.cvChicken);
+        NavController navController = NavHostFragment.findNavController(HomeFragment.this);
+
+        cvChicken.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int menuId=1;
+                Bundle bundle=new Bundle();
+                bundle.putInt("menu_id",1);
+                navController.navigate(R.id.action_homeFragment_to_typeFragment,bundle);
+            }
+        });
     }
 }

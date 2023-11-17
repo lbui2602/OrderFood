@@ -2,13 +2,25 @@ package com.example.orderfood.uis;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.orderfood.R;
+import com.example.orderfood.adapters.FoodAdapter;
+import com.example.orderfood.models.Food;
+import com.example.orderfood.models.database.DBHelper;
+import com.example.orderfood.models.database.FoodRepository;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +37,12 @@ public class TypeFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    List<Food> list;
+    FoodAdapter foodAdapter;
+    RecyclerView rcv;
+    DBHelper dbHelper;
+    FoodRepository foodRepository;
 
     public TypeFragment() {
         // Required empty public constructor
@@ -62,5 +80,20 @@ public class TypeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_type, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        rcv=view.findViewById(R.id.rcvFood);
+        dbHelper=new DBHelper(getContext());
+        foodRepository=new FoodRepository(dbHelper);
+        int menuId=getArguments().getInt("menu_id");
+        list=foodRepository.getFoodByMenuId(menuId);
+//        foodAdapter=new FoodAdapter(list);
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this.getContext(),RecyclerView.VERTICAL,false);
+        GridLayoutManager gridLayoutManager =new GridLayoutManager(this.getContext(),2);
+        rcv.setLayoutManager(gridLayoutManager);
+//        rcv.setAdapter(foodAdapter);
     }
 }

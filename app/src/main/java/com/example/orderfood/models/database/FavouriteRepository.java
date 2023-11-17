@@ -26,8 +26,6 @@ public class FavouriteRepository {
     }
 
     public List<Food> getFoodsByUserId(int userId) {
-
-
         String statement = "SELECT food_id FROM " + TABLE_NAME;
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 

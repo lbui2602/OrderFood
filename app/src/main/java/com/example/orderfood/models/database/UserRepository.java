@@ -23,8 +23,6 @@ public class UserRepository {
     public List<User> getAllUser() {
         String statement = "SELECT * FROM " + TABLE_NAME;
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-
-
         Cursor cursor = db.rawQuery(statement, null);
 
         List<User> list = new ArrayList<>();

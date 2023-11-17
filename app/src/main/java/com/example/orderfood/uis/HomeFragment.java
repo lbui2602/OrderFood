@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.example.orderfood.R;
 import com.example.orderfood.models.database.DBHelper;
@@ -25,7 +26,7 @@ import com.example.orderfood.models.database.FoodRepository;
  */
 public class HomeFragment extends Fragment {
     DBHelper dbHelper;
-    CardView cvChicken;
+    LinearLayout llChicken,llKorean,llDrink;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -78,17 +79,35 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         dbHelper=new DBHelper(getContext());
-        cvChicken=view.findViewById(R.id.cvChicken);
-        NavController navController = NavHostFragment.findNavController(HomeFragment.this);
+        llChicken=view.findViewById(R.id.llChicken);
+        llKorean=view.findViewById(R.id.llKorean);
+        llDrink=view.findViewById(R.id.llDrink);
 
-        cvChicken.setOnClickListener(new View.OnClickListener() {
+
+        llChicken.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int menuId=1;
-                Bundle bundle=new Bundle();
-                bundle.putInt("menu_id",1);
-                navController.navigate(R.id.action_homeFragment_to_typeFragment,bundle);
+                navigationToType(1);
             }
         });
+        llKorean.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navigationToType(2);
+            }
+        });
+        llDrink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navigationToType(3);
+            }
+        });
+    }
+
+    private void navigationToType(int menuId) {
+        Bundle bundle=new Bundle();
+        bundle.putInt("menu_id",menuId);
+        NavController navController = NavHostFragment.findNavController(HomeFragment.this);
+        navController.navigate(R.id.action_homeFragment_to_typeFragment,bundle);
     }
 }

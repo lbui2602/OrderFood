@@ -37,7 +37,6 @@ public class DBHelper extends SQLiteOpenHelper {
                 stringBuilder.append("\n");
             }
             String createScript = stringBuilder.toString();
-            Log.d("DatabaseHelper", createScript);
             bufferedReader.close();
             String[] statements = createScript.split(";");
 

@@ -90,10 +90,11 @@ public class TypeFragment extends Fragment {
         foodRepository=new FoodRepository(dbHelper);
         int menuId=getArguments().getInt("menu_id");
         list=foodRepository.getFoodByMenuId(menuId);
-//        foodAdapter=new FoodAdapter(list);
+        Log.d("TAG", "onViewCreated: "+list.get(4).getImage());
+        foodAdapter=new FoodAdapter(list);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this.getContext(),RecyclerView.VERTICAL,false);
         GridLayoutManager gridLayoutManager =new GridLayoutManager(this.getContext(),2);
         rcv.setLayoutManager(gridLayoutManager);
-//        rcv.setAdapter(foodAdapter);
+        rcv.setAdapter(foodAdapter);
     }
 }

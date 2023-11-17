@@ -110,9 +110,9 @@ VALUES (26,'Canh kim chi','105.000 đ', 'https://images.foody.vn/res/g18/176155/
 INSERT INTO Food (food_id, name, price, image, menu_id)
 VALUES (28,'Cơm chiên kim chi','110.000 đ', 'https://images.foody.vn/res/g18/176155/s400x400/71f443e3-7d30-45e7-a759-447f6fa8-8a133071-220528110909.jpeg',2);
 INSERT INTO Food (food_id, name, price, image, menu_id)
-VALUES (29,'Nước lọc','10.000 đ', 'https://donchicken.vn/pub/media/catalog/product/cache/c430e3e26517992a27628ce5995d6769/a/q/aquafina_500ml.png',3);
+VALUES (29,'Nước lọc','10.000 đ', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZGgSMOTyMpsQ_pO1i-eF1zroY1NFUviOhAw&usqp=CAU',3);
 INSERT INTO Food (food_id, name, price, image, menu_id)
-VALUES (30,'Pepsi','20.000 đ', 'https://donchicken.vn/pub/media/catalog/product/cache/c430e3e26517992a27628ce5995d6769/b/_/b_n_sao_c_a_pepsi_blue-min.png',3);
+VALUES (30,'Pepsi','20.000 đ', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgltSa213CoAwce4cnd3WZCkwQqa3vbXiNwg&usqp=CAU',3);
 INSERT INTO Food (food_id, name, price, image, menu_id)
 VALUES (31,'Cocacola','20.000 đ', 'https://tomitamart.vn/public/media//00400.jpg',3);
 INSERT INTO Food (food_id, name, price, image, menu_id)

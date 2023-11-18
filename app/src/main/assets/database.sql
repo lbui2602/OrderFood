@@ -119,6 +119,10 @@ INSERT INTO Food (food_id, name, price, image, menu_id)
 VALUES (34,'Bò húc','20.000 đ', 'https://hangnhapkhauthailan.com/images/hanghoa/bnuoc-tang-luc-bo-huc-lon-24-1-N7C.jpg',3);
 INSERT INTO Food (food_id, name, price, image, menu_id)
 VALUES (35,'Twister','20.000 đ', 'https://images.foody.vn/res/g99/985959/s400x400/e94e4c28-86c3-45f1-89be-e963c7ff-79ce6d3b-220808120449.jpeg',3);
+INSERT INTO Cart (user_id,food_id,quantity)
+VALUES (1,1,1);
+INSERT INTO Favourite (user_id,food_id)
+VALUES (1,1);
 
 
 

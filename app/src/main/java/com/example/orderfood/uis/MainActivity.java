@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.example.orderfood.R;
 import com.example.orderfood.models.database.DBHelper;
+import com.example.orderfood.models.database.FoodRepository;
 import com.example.orderfood.models.database.UserRepository;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initView();
     }
+
 
     public void initView() {
         bnvMain=findViewById(R.id.bnvMain);

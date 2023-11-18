@@ -41,6 +41,7 @@ public class HomeFragment extends Fragment {
     List<SpecialContainer> specialList;
     List<ImageView> recommendedList;
     LinearLayout llChicken,llKorean,llDrink;
+    CardView cardView;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -95,10 +96,10 @@ public class HomeFragment extends Fragment {
         getSpecialAndRecommend(view);
         setSpecialAndRecommend();
 
-        CardView cardView = view.findViewById(R.id.get_all);
-        cardView.setOnClickListener(v -> {
-            startActivity(new Intent(getContext(), GetAllActivity.class));
-        });
+//        CardView cardView = view.findViewById(R.id.get_all);
+//        cardView.setOnClickListener(v -> {
+//            startActivity(new Intent(getContext(), GetAllActivity.class));
+//        });
 
         return view;
 
@@ -155,6 +156,12 @@ public class HomeFragment extends Fragment {
         llChicken=view.findViewById(R.id.llChicken);
         llKorean=view.findViewById(R.id.llKorean);
         llDrink=view.findViewById(R.id.llDrink);
+
+        cardView= view.findViewById(R.id.get_all);
+        cardView.setOnClickListener(v -> {
+            NavController navController = NavHostFragment.findNavController(HomeFragment.this);
+            navController.navigate(R.id.action_homeFragment_to_allFragment);
+        });
 
         llChicken.setOnClickListener(new View.OnClickListener() {
             @Override

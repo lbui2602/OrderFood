@@ -1,4 +1,4 @@
-package com.example.orderfood.uis;
+package com.example.orderfood.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,8 +14,6 @@ import com.bumptech.glide.Glide;
 import com.example.orderfood.R;
 import com.example.orderfood.models.Food;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -41,7 +39,7 @@ public class GetAllRecyclerViewAdapter extends RecyclerView.Adapter<GetAllRecycl
     public void onBindViewHolder(@NonNull GetAllRecyclerViewAdapter.MyViewHolder holder, int position) {
         Food food = foodList.get(position);
 
-        Picasso.get().load(food.getImage()).into(holder.imageView);
+        Glide.with(context).load(food.getImage()).into(holder.imageView);
 
         holder.tv_food_name.setText(food.getName());
         holder.tv_food_price.setText(food.getPrice());

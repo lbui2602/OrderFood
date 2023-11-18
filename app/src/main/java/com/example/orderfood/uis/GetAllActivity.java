@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import com.example.orderfood.R;
+import com.example.orderfood.adapters.GetAllRecyclerViewAdapter;
 import com.example.orderfood.models.Food;
 import com.example.orderfood.models.database.DBHelper;
 import com.example.orderfood.models.database.FoodRepository;

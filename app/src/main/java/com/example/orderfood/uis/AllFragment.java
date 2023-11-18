@@ -1,16 +1,27 @@
 package com.example.orderfood.uis;
 
+import static android.view.View.GONE;
+import static com.google.android.material.internal.ViewUtils.hideKeyboard;
+
+import android.graphics.Rect;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.orderfood.R;
 import com.example.orderfood.adapters.GetAllRecyclerViewAdapter;
@@ -18,6 +29,7 @@ import com.example.orderfood.models.Food;
 import com.example.orderfood.models.database.DBHelper;
 import com.example.orderfood.models.database.FoodRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,7 +48,12 @@ public class AllFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     DBHelper dbHelper;
+    List<Food> foodListOriginal;
     List<Food> foodList;
+    GetAllRecyclerViewAdapter adapter;
+    SearchView searchView;
+
+    Boolean focusSearchView;
 
     RecyclerView recyclerView;
 
@@ -75,19 +92,71 @@ public class AllFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_all, container, false);
+        View view = inflater.inflate(R.layout.fragment_all, container, false);
+
+
+        return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        dbHelper = new DBHelper(getContext());
-        foodList = new FoodRepository(dbHelper).getAll();
 
+        searchView = view.findViewById(R.id.get_all_search);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                List<Food> list = new ArrayList<>();
+                for (Food food : foodListOriginal) {
+                    if (food.getName().toLowerCase().contains(newText.toLowerCase())) {
+                        list.add(food);
+                    }
+                }
+                foodList.clear();
+                foodList.addAll(list);
+                adapter.notifyDataSetChanged();
+                return false;
+            }
+        });
+        focusSearchView = getArguments().getBoolean("focusSearchView");
+        if (focusSearchView) {
+            new Handler().postDelayed(() -> {
+                searchView.requestFocus();
+                searchView.setIconified(false);
+            }, 500);
+        }
+
+        int searchCloseButtonId = searchView.findViewById(androidx.appcompat.R.id.search_close_btn).getId();
+        ImageView closeButton = searchView.findViewById(searchCloseButtonId);
+        closeButton.setOnClickListener(v -> {
+            if (focusSearchView) {
+                NavController navController = NavHostFragment.findNavController(AllFragment.this);
+                navController.navigate(R.id.action_allFragment_to_homeFragment);
+            } else {
+                searchView.setQuery("", false);
+                searchView.clearFocus();
+            }
+        });
+        dbHelper = new DBHelper(getContext());
+        foodListOriginal = new FoodRepository(dbHelper).getAll();
+        foodList = new ArrayList<>(foodListOriginal);
         recyclerView = view.findViewById(R.id.rcvAll);
 
-        GetAllRecyclerViewAdapter adapter = new GetAllRecyclerViewAdapter(getContext(), foodList);
+        adapter = new GetAllRecyclerViewAdapter(getContext(), foodList);
         recyclerView.setAdapter(adapter);
+
+        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+                outRect.top = 20;
+//                super.getItemOffsets(outRect, view, parent, state);
+            }
+        });
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 }

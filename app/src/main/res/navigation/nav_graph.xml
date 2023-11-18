@@ -66,6 +66,9 @@
         android:label="fragment_all"
         tools:layout="@layout/fragment_all" >
         <action
+            android:id="@+id/action_allFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
             android:id="@+id/action_allFragment_to_typeFragment"
             app:destination="@id/typeFragment" />
         <action

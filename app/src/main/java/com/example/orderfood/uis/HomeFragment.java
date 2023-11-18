@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.widget.SearchView;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
@@ -161,10 +162,22 @@ public class HomeFragment extends Fragment {
         llKorean=view.findViewById(R.id.llKorean);
         llDrink=view.findViewById(R.id.llDrink);
 
+        SearchView searchView = view.findViewById(R.id.home_search_view);
+
+        searchView.setOnClickListener(v -> {
+            NavController navController = NavHostFragment.findNavController(HomeFragment.this);
+            Bundle bundle = new Bundle();
+            bundle.putBoolean("focusSearchView", true);
+            navController.navigate(R.id.action_homeFragment_to_allFragment, bundle);
+        });
+
+
         cardView= view.findViewById(R.id.get_all);
         cardView.setOnClickListener(v -> {
             NavController navController = NavHostFragment.findNavController(HomeFragment.this);
-            navController.navigate(R.id.action_homeFragment_to_allFragment);
+            Bundle bundle = new Bundle();
+            bundle.putBoolean("focusSearchView", false);
+            navController.navigate(R.id.action_homeFragment_to_allFragment, bundle);
         });
 
         llChicken.setOnClickListener(new View.OnClickListener() {

@@ -246,6 +246,7 @@
                                     app:cardCornerRadius="@dimen/_100sdp">
 
                                     <ImageView
+                                        android:id="@+id/special_image_1"
                                         android:layout_width="@dimen/_85sdp"
                                         android:layout_height="@dimen/_85sdp"
                                         android:src="@drawable/pizza_square" />
@@ -261,6 +262,7 @@
                                 android:padding="@dimen/_8sdp">
 
                                 <TextView
+                                    android:id="@+id/special_food_name_1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Thali"
@@ -269,6 +271,7 @@
                                     android:textStyle="bold" />
 
                                 <TextView
+                                    android:id="@+id/special_food_price_1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="399 d"
@@ -283,6 +286,7 @@
                                     app:cardCornerRadius="20dp">
 
                                     <Button
+                                        android:id="@+id/special_see_detail_1"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:background="@color/green"
@@ -319,6 +323,7 @@
                                     app:cardCornerRadius="@dimen/_100sdp">
 
                                     <ImageView
+                                        android:id="@+id/special_image_2"
                                         android:layout_width="@dimen/_85sdp"
                                         android:layout_height="@dimen/_85sdp"
                                         android:src="@drawable/pizza_square" />
@@ -334,6 +339,7 @@
                                 android:padding="@dimen/_8sdp">
 
                                 <TextView
+                                    android:id="@+id/special_food_name_2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Thali"
@@ -342,6 +348,7 @@
                                     android:textStyle="bold" />
 
                                 <TextView
+                                    android:id="@+id/special_food_price_2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="399 d"
@@ -356,6 +363,7 @@
                                     app:cardCornerRadius="20dp">
 
                                     <Button
+                                        android:id="@+id/special_see_detail_2"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:background="@color/green"
@@ -392,6 +400,7 @@
                                     app:cardCornerRadius="@dimen/_100sdp">
 
                                     <ImageView
+                                        android:id="@+id/special_image_3"
                                         android:layout_width="@dimen/_85sdp"
                                         android:layout_height="@dimen/_85sdp"
                                         android:src="@drawable/pizza_square" />
@@ -407,6 +416,7 @@
                                 android:padding="@dimen/_8sdp">
 
                                 <TextView
+                                    android:id="@+id/special_food_name_3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Thali"
@@ -415,6 +425,7 @@
                                     android:textStyle="bold" />
 
                                 <TextView
+                                    android:id="@+id/special_food_price_3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="399 d"
@@ -429,6 +440,7 @@
                                     app:cardCornerRadius="20dp">
 
                                     <Button
+                                        android:id="@+id/special_see_detail_3"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:background="@color/green"
@@ -480,6 +492,7 @@
                         app:cardCornerRadius="20dp">
 
                         <ImageView
+                            android:id="@+id/recommend_image_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/cake" />
@@ -492,6 +505,7 @@
                         app:cardCornerRadius="20dp">
 
                         <ImageView
+                            android:id="@+id/recommend_image_2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/cake" />
@@ -504,6 +518,7 @@
                         app:cardCornerRadius="20dp">
 
                         <ImageView
+                            android:id="@+id/recommend_image_3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/cake" />

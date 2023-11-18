@@ -14,13 +14,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.bumptech.glide.Glide;
 import com.example.orderfood.R;
+import com.example.orderfood.models.Food;
 import com.example.orderfood.models.database.DBHelper;
 import com.example.orderfood.models.database.FavouriteRepository;
 import com.example.orderfood.models.database.FoodRepository;
 import com.example.orderfood.models.database.PrefManager;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +36,10 @@ import com.example.orderfood.models.database.PrefManager;
  */
 public class HomeFragment extends Fragment {
     DBHelper dbHelper;
+    List<Food> foodList;
+
+    List<SpecialContainer> specialList;
+    List<ImageView> recommendedList;
     LinearLayout llChicken,llKorean,llDrink;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -77,21 +88,69 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        dbHelper=new DBHelper(getContext());
+        foodList = new FoodRepository(dbHelper).getAll();
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        getSpecialAndRecommend(view);
+        setSpecialAndRecommend();
+
         CardView cardView = view.findViewById(R.id.get_all);
         cardView.setOnClickListener(v -> {
             startActivity(new Intent(getContext(), GetAllActivity.class));
         });
+
         return view;
 
+
+    }
+    private void getSpecialAndRecommend(View view) {
+        specialList = new ArrayList<>();
+
+        final int quantity = 3;
+        for (int i = 1; i <= quantity; i++) {
+            int imageId = getResources().getIdentifier("special_image_" + i, "id", requireContext().getPackageName());
+            int nameId = getResources().getIdentifier("special_food_name_" + i, "id", requireContext().getPackageName());
+            int priceId = getResources().getIdentifier("special_food_price_" + i, "id", requireContext().getPackageName());
+            int seeDetailId = getResources().getIdentifier("special_see_detail_" + i, "id", requireContext().getPackageName());
+        specialList.add(
+                new SpecialContainer(view.findViewById(imageId),
+                view.findViewById(nameId),
+                view.findViewById(priceId),
+                view.findViewById(seeDetailId)));
+        }
+
+        recommendedList = new ArrayList<>();
+
+        for (int i = 1; i <= quantity; i++) {
+            int resId = getResources().getIdentifier("recommend_image_" + i, "id", requireContext().getPackageName());
+            recommendedList.add(view.findViewById(resId));
+        }
+    }
+
+    public void setSpecialAndRecommend() {
+        final int quantity = 3;
+         for(int i = 0; i < quantity; i++) {
+             SpecialContainer specialContainer = specialList.get(i);
+
+             Food food = foodList.get(i);
+             Picasso.get().load(food.getImage()).into(specialContainer.getImageView());
+             Glide.with(this).load(food.getImage()).into(specialContainer.getImageView());
+
+
+             specialContainer.getFoodName().setText(food.getName());
+             specialContainer.getFoodPrice().setText(food.getPrice());
+         }
+        for(int i = 0; i < quantity; i++) {
+            Food food = foodList.get(i);
+            Glide.with(this).load(food.getImage()).into(recommendedList.get(i));
+        }
 
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        dbHelper=new DBHelper(getContext());
         String username=PrefManager.getString(getContext(),"username");
         llChicken=view.findViewById(R.id.llChicken);
         llKorean=view.findViewById(R.id.llKorean);

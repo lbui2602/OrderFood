@@ -96,6 +96,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/llChicken"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -130,6 +131,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/llKorean"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -165,6 +167,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/llDrink"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"

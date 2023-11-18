@@ -22,7 +22,7 @@ public class FoodRepository {
     }
 
     public Food getById(int id) {
-        String statement = "SELECT * FROM " + TABLE_NAME + " WHERE user_id = ?";
+        String statement = "SELECT * FROM " + TABLE_NAME + " WHERE id = ?";
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
 
@@ -34,7 +34,7 @@ public class FoodRepository {
                 cursor.getString(3),
                 cursor.getInt(4));
     }
-<<<<<<< HEAD
+
 
     public List<Food> getAll() {
         String statement = "SELECT * FROM " + TABLE_NAME;
@@ -46,10 +46,12 @@ public class FoodRepository {
             list.add(new Food(cursor.getInt(0),
                     cursor.getString(1),
                     cursor.getString(2),
-                    cursor.getString(3) ));
+                    cursor.getString(3),
+                    cursor.getInt(4)));
         }
         return list;
-=======
+    }
+
     public List<Food> getFoodByMenuId(int menuId) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         List<Food> foodList = new ArrayList<>();
@@ -90,7 +92,6 @@ public class FoodRepository {
         }
 
         return foodList;
->>>>>>> fc582bc63d9a32c19d398ab46dd76058bf3d5934
     }
 
 }

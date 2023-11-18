@@ -22,9 +22,11 @@ import com.example.orderfood.models.Food;
 import com.example.orderfood.models.User;
 import com.example.orderfood.models.database.DBHelper;
 import com.example.orderfood.models.database.FavouriteRepository;
+import com.example.orderfood.models.database.FoodRepository;
 import com.example.orderfood.models.database.PrefManager;
 import com.example.orderfood.models.database.UserRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -49,6 +51,7 @@ public class FavoriteFragment extends Fragment {
     RecyclerView rcv;
     DBHelper dbHelper;
     FavouriteRepository favouriteRepository;
+    FoodRepository foodRepository;
     UserRepository userRepository;
     public FavoriteFragment() {
         // Required empty public constructor
@@ -93,6 +96,7 @@ public class FavoriteFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         rcv = view.findViewById(R.id.rcvFavoriteFood);
         dbHelper = new DBHelper(getContext());
+        foodRepository=new FoodRepository(dbHelper);
         favouriteRepository = new FavouriteRepository(dbHelper);
         userRepository=new UserRepository(dbHelper);
         String username = PrefManager.getString(getContext(), "username");

@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 
 import com.example.orderfood.R;
 import com.example.orderfood.models.database.DBHelper;
+import com.example.orderfood.models.database.FavouriteRepository;
 import com.example.orderfood.models.database.FoodRepository;
 import com.example.orderfood.models.database.PrefManager;
 
@@ -81,11 +82,9 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         dbHelper=new DBHelper(getContext());
         String username=PrefManager.getString(getContext(),"username");
-        Log.d("TAG", "onViewCreated: "+username);
         llChicken=view.findViewById(R.id.llChicken);
         llKorean=view.findViewById(R.id.llKorean);
         llDrink=view.findViewById(R.id.llDrink);
-
 
         llChicken.setOnClickListener(new View.OnClickListener() {
             @Override

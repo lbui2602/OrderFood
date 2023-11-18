@@ -1,5 +1,6 @@
 package com.example.orderfood.models.database;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -26,24 +27,24 @@ public class FavouriteRepository {
     }
 
     public List<Food> getFoodsByUserId(int userId) {
-        String statement = "SELECT food_id FROM " + TABLE_NAME;
+        String statement = "SELECT * FROM " + TABLE_NAME+" WHERE user_id = ?";
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
-        Cursor cursor = db.rawQuery(statement, null);
+        Cursor cursor = db.rawQuery(statement, new String[]{userId+""});
 
-        List<Integer> list = new ArrayList<>();
+        List<Favorite> listFavorite = new ArrayList<>();
 
         while (cursor.moveToNext()) {
-            list.add(
-                    cursor.getInt(0));
+            listFavorite.add(new Favorite(
+                    cursor.getColumnIndex("user_id"),
+                    cursor.getColumnIndex("food_id")
+            ));
         }
-
-        List<Food> result = new ArrayList<>();
-        for (Integer i : list) {
-            Food byId = foodRepository.getById(userId);
-            result.add(byId);
+        List<Food> list=new ArrayList<>();
+        for(int i=0;i< listFavorite.size();i++){
+            list.add(foodRepository.getFoodByFoodId(listFavorite.get(i).getFoodId()));
         }
-        return result;
+        return list;
     }
     public void addFavourite(Favorite favorite){
         SQLiteDatabase db = dbHelper.getWritableDatabase();

@@ -105,11 +105,6 @@ public class HomeFragment extends Fragment {
         getSpecialAndRecommend(view);
         setSpecialAndRecommend();
 
-//        CardView cardView = view.findViewById(R.id.get_all);
-//        cardView.setOnClickListener(v -> {
-//            startActivity(new Intent(getContext(), GetAllActivity.class));
-//        });
-
         return view;
 
 

@@ -9,7 +9,11 @@ import com.example.orderfood.models.Food;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FoodRepository {
+
 
     private final String TABLE_NAME = "Food";
     private DBHelper dbHelper;
@@ -20,6 +24,7 @@ public class FoodRepository {
 
     @SuppressLint("Range")
     public Food getById(int id) {
+
         String statement = "SELECT * FROM " + TABLE_NAME + " WHERE food_id = ?";
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
@@ -65,6 +70,24 @@ public class FoodRepository {
 
         return food;
     }
+
+
+    public List<Food> getAll() {
+        String statement = "SELECT * FROM " + TABLE_NAME;
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        List<Food> list = new ArrayList<>();
+        Cursor cursor = db.rawQuery(statement, null);
+        while (cursor.moveToNext()) {
+            list.add(new Food(cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3),
+                    cursor.getInt(4)));
+        }
+        return list;
+    }
+
     public List<Food> getFoodByMenuId(int menuId) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         List<Food> foodList = new ArrayList<>();

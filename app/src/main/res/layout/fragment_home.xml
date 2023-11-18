@@ -10,6 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -79,6 +80,7 @@
                             android:layout_margin="@dimen/_5sdp"
                             android:src="@drawable/foodall" />
 
+
                     </androidx.cardview.widget.CardView>
 
                     <TextView
@@ -91,6 +93,7 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/_15sdp" />
                 </LinearLayout>
+
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -115,6 +118,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <TextView
+
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:layout_gravity="center"
@@ -139,6 +143,7 @@
                         android:layout_weight="6"
                         app:cardBackgroundColor="#F4E4CD"
                         app:cardCornerRadius="@dimen/_15sdp">
+
 
                         <ImageView
                             android:layout_width="wrap_content"

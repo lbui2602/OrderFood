@@ -6,11 +6,22 @@ public class Food {
     private String price;
     private String image;
 
-    public Food(int id, String name, String price, String image) {
+    private int menuId;
+
+    public Food(int id, String name, String price, String image,int menuId) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.image = image;
+        this.menuId = menuId;
+    }
+
+    public int getMenuId() {
+        return menuId;
+    }
+
+    public void setMenuId(int menuId) {
+        this.menuId = menuId;
     }
 
     public Food() {

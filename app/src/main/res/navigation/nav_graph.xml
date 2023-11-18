@@ -14,14 +14,11 @@
             android:id="@+id/action_homeFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_chickenFragment"
-            app:destination="@id/chickenFragment" />
+            android:id="@+id/action_homeFragment_to_allFragment"
+            app:destination="@id/allFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_drinkFragment"
-            app:destination="@id/drinkFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_koreanFragment"
-            app:destination="@id/koreanFragment" />
+            android:id="@+id/action_homeFragment_to_typeFragment"
+            app:destination="@id/typeFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
@@ -40,6 +37,9 @@
         <action
             android:id="@+id/action_cartFragment_to_detailsFragment3"
             app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/action_cartFragment_to_payFragment"
+            app:destination="@id/payFragment" />
     </fragment>
     <fragment
         android:id="@+id/userFragment"
@@ -55,36 +55,35 @@
         android:name="com.example.orderfood.uis.DetailsFragment"
         android:label="fragment_details"
         tools:layout="@layout/fragment_details" />
-    <fragment
-        android:id="@+id/chickenFragment"
-        android:name="com.example.orderfood.uis.ChickenFragment"
-        android:label="fragment_chicken"
-        tools:layout="@layout/fragment_chicken" >
-        <action
-            android:id="@+id/action_chickenFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/drinkFragment"
-        android:name="com.example.orderfood.uis.DrinkFragment"
-        android:label="fragment_drink"
-        tools:layout="@layout/fragment_drink" >
-        <action
-            android:id="@+id/action_drinkFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/koreanFragment"
-        android:name="com.example.orderfood.uis.KoreanFragment"
-        android:label="fragment_korean"
-        tools:layout="@layout/fragment_korean" >
-        <action
-            android:id="@+id/action_koreanFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
-    </fragment>
     <activity
         android:id="@+id/loginActivity"
         android:name="com.example.orderfood.uis.LoginActivity"
         android:label="activity_login"
         tools:layout="@layout/activity_login" />
+    <fragment
+        android:id="@+id/allFragment"
+        android:name="com.example.orderfood.uis.AllFragment"
+        android:label="fragment_all"
+        tools:layout="@layout/fragment_all" >
+        <action
+            android:id="@+id/action_allFragment_to_typeFragment"
+            app:destination="@id/typeFragment" />
+        <action
+            android:id="@+id/action_allFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/typeFragment"
+        android:name="com.example.orderfood.uis.TypeFragment"
+        android:label="fragment_type"
+        tools:layout="@layout/fragment_type" >
+        <action
+            android:id="@+id/action_typeFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/payFragment"
+        android:name="com.example.orderfood.uis.PayFragment"
+        android:label="fragment_pay"
+        tools:layout="@layout/fragment_pay" />
 </navigation>

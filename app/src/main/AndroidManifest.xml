@@ -33,5 +33,4 @@
             android:name=".uis.RegisterActivity"
             android:exported="false" />
     </application>
-
 </manifest>

@@ -26,8 +26,6 @@ public class FavouriteRepository {
     }
 
     public List<Food> getFoodsByUserId(int userId) {
-
-
         String statement = "SELECT food_id FROM " + TABLE_NAME;
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
@@ -42,7 +40,7 @@ public class FavouriteRepository {
 
         List<Food> result = new ArrayList<>();
         for (Integer i : list) {
-            Food byId = foodRepository.getById(i);
+            Food byId = foodRepository.getById(userId);
             result.add(byId);
         }
         return result;

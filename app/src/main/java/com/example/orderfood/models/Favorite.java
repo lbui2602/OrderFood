@@ -38,4 +38,8 @@ public class Favorite {
         this.userId = userId;
         this.foodId = foodId;
     }
+    public Favorite( int userId, int foodId) {
+        this.userId = userId;
+        this.foodId = foodId;
+    }
 }

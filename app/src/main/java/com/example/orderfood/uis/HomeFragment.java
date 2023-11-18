@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
@@ -91,6 +92,14 @@ public class HomeFragment extends Fragment {
         dbHelper=new DBHelper(getContext());
         foodList = new FoodRepository(dbHelper).getAll();
 
+        List<Food> list = new ArrayList<>();
+        for (Food food : foodList) {
+            if (food.getName().length() < 12) {
+                list.add(food);
+            }
+        }
+        foodList = list;
+
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         getSpecialAndRecommend(view);
         setSpecialAndRecommend();
@@ -142,7 +151,7 @@ public class HomeFragment extends Fragment {
              specialContainer.getFoodPrice().setText(food.getPrice());
          }
         for(int i = 0; i < quantity; i++) {
-            Food food = foodList.get(i);
+            Food food = foodList.get(foodList.size() - i - 1);
             Glide.with(this).load(food.getImage()).into(recommendedList.get(i));
         }
 

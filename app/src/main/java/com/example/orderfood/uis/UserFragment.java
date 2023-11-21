@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.orderfood.R;
 import com.example.orderfood.models.database.DBHelper;
@@ -17,6 +20,7 @@ import com.example.orderfood.models.database.DBHelper;
  * create an instance of this fragment.
  */
 public class UserFragment extends Fragment {
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -58,10 +62,31 @@ public class UserFragment extends Fragment {
         }
     }
 
+    ImageView imageProfile;
+    EditText usernameProfile, fullnameProfile, addrProfile, phoneNumberProfile;
+    Button btnUpdate, btnLogout;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user, container, false);
+        View view = inflater.inflate(R.layout.fragment_user, container, false);
+
+        imageProfile = view.findViewById(R.id.image_userProfile);
+        usernameProfile = view.findViewById(R.id.edt_usernameProfile);
+        fullnameProfile = view.findViewById(R.id.edt_nameProfile);
+        addrProfile = view.findViewById(R.id.edt_addrProfile);
+        phoneNumberProfile = view.findViewById(R.id.edt_phoneNumberProfile);
+        btnUpdate = view.findViewById(R.id.btnUpdate);
+        btnLogout = view.findViewById(R.id.btnLogout);
+        
+        getUserData();
+
+        return view;
     }
+
+    private void getUserData() {
+    }
+
+
 }

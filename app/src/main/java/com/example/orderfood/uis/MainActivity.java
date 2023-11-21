@@ -35,6 +35,6 @@ public class MainActivity extends AppCompatActivity {
 //        deleteDatabase("food.db");
         dbHelper=new DBHelper(this);
         UserRepository userRepository=new UserRepository(dbHelper);
-//        Log.d("TAG", "initView: "+userRepository.getAllUser().get(0).getUsername());
+        Log.d("TAG", "initView: "+userRepository.getAllUser().get(0).getUsername());
     }
 }

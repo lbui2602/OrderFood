@@ -1,14 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".uis.UserFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <ImageView
+        android:id="@+id/image_userProfile"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/circular_background"
+        android:backgroundTint="@color/black"
+        android:scaleType="centerCrop"
+        android:src="@drawable/user_image" />
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/edt_usernameProfile"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:background="@drawable/edit_text_shape"
+        android:elevation="5dp"
+        android:enabled="false"
+        android:gravity="center"
+        android:hint="Username" />
+
+    <EditText
+        android:id="@+id/edt_nameProfile"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:background="@drawable/edit_text_shape"
+        android:elevation="5dp"
+        android:hint="Full Name"
+        android:paddingLeft="@dimen/_10sdp" />
+
+    <EditText
+        android:id="@+id/edt_addrProfile"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:background="@drawable/edit_text_shape"
+        android:elevation="5dp"
+        android:hint="Address"
+        android:paddingLeft="@dimen/_10sdp" />
+
+    <EditText
+        android:id="@+id/edt_phoneNumberProfile"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:background="@drawable/edit_text_shape"
+        android:elevation="5dp"
+        android:hint="Phone number"
+        android:paddingLeft="@dimen/_10sdp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/btnUpdate"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_30sdp"
+            android:layout_weight="1"
+            android:background="@drawable/button_shape"
+            android:backgroundTint="#FF9800"
+            android:text="UPDATE"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_20sdp" />
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_weight="1"
+            android:background="@drawable/button_shape"
+            android:backgroundTint="#F44336"
+            android:text="LOGOUT"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_20sdp" />
+
+    </LinearLayout>
+
+</LinearLayout>

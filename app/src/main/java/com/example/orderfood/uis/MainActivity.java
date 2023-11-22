@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.example.orderfood.R;
+import com.example.orderfood.models.database.CartRepository;
 import com.example.orderfood.models.database.DBHelper;
 import com.example.orderfood.models.database.FoodRepository;
 import com.example.orderfood.models.database.UserRepository;
@@ -17,6 +18,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bnvMain;
     DBHelper dbHelper;
+    CartRepository cartRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,5 +38,6 @@ public class MainActivity extends AppCompatActivity {
         dbHelper=new DBHelper(this);
         UserRepository userRepository=new UserRepository(dbHelper);
 //        Log.d("TAG", "initView: "+userRepository.getAllUser().get(0).getUsername());
+        cartRepository=new CartRepository(dbHelper);
     }
 }

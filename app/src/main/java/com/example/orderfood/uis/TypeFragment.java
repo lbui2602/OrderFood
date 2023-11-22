@@ -14,9 +14,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.orderfood.IClick;
 import com.example.orderfood.R;
 import com.example.orderfood.adapters.FoodAdapter;
+import com.example.orderfood.models.Cart;
 import com.example.orderfood.models.Food;
+import com.example.orderfood.models.database.CartRepository;
 import com.example.orderfood.models.database.DBHelper;
 import com.example.orderfood.models.database.FoodRepository;
 
@@ -27,7 +30,7 @@ import java.util.List;
  * Use the {@link TypeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TypeFragment extends Fragment {
+public class TypeFragment extends Fragment implements IClick {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -42,6 +45,7 @@ public class TypeFragment extends Fragment {
     FoodAdapter foodAdapter;
     RecyclerView rcv;
     DBHelper dbHelper;
+    CartRepository cartRepository;
     FoodRepository foodRepository;
 
     public TypeFragment() {
@@ -88,13 +92,19 @@ public class TypeFragment extends Fragment {
         rcv=view.findViewById(R.id.rcvFood);
         dbHelper=new DBHelper(getContext());
         foodRepository=new FoodRepository(dbHelper);
+        cartRepository=new CartRepository(dbHelper);
         int menuId=getArguments().getInt("menu_id");
         list=foodRepository.getFoodByMenuId(menuId);
         Log.d("TAG", "onViewCreated: "+list.get(4).getImage());
-        foodAdapter=new FoodAdapter(list);
+        foodAdapter=new FoodAdapter(list,getContext());
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this.getContext(),RecyclerView.VERTICAL,false);
         GridLayoutManager gridLayoutManager =new GridLayoutManager(this.getContext(),2);
         rcv.setLayoutManager(gridLayoutManager);
         rcv.setAdapter(foodAdapter);
+    }
+
+    @Override
+    public void onClickAddToCart(Cart cart) {
+        cartRepository.updateCart(cart,1);
     }
 }

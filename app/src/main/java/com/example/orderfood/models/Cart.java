@@ -3,7 +3,7 @@ package com.example.orderfood.models;
 import java.util.List;
 
 public class Cart {
-    private int id;
+    private static int id=0;
     private int userId;
     private int foodId;
     private int quantity;
@@ -17,8 +17,8 @@ public class Cart {
         this.quantity = quantity;
     }
 
-    public Cart(int id, int userId, int foodId, int quantity) {
-        this.id = id;
+    public Cart(int userId, int foodId, int quantity) {
+        this.id++;
         this.userId = userId;
         this.foodId = foodId;
         this.quantity = quantity;

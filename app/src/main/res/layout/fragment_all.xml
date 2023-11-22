@@ -40,15 +40,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <!-- TODO: Update blank fragment layout -->
-            <HorizontalScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rcvAll"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </HorizontalScrollView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcvAll"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
         </LinearLayout>
     </LinearLayout>
 

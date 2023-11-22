@@ -102,10 +102,11 @@ public class FavoriteFragment extends Fragment {
         String username = PrefManager.getString(getContext(), "username");
         User user=userRepository.getUserByUsername(username);
         favoriteList = favouriteRepository.getFoodsByUserId(user.getId());
-        foodAdapter = new FoodAdapter(favoriteList);
+        foodAdapter = new FoodAdapter(favoriteList,getContext());
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this.getContext(),RecyclerView.VERTICAL,false);
         GridLayoutManager gridLayoutManager =new GridLayoutManager(this.getContext(),2);
         rcv.setLayoutManager(gridLayoutManager);
         rcv.setAdapter(foodAdapter);
+        foodAdapter.notifyDataSetChanged();
     }
 }

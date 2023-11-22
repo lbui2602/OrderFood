@@ -31,7 +31,7 @@ public class GetAllRecyclerViewAdapter extends RecyclerView.Adapter<GetAllRecycl
     @Override
     public GetAllRecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.get_all_row, parent, false);
+        View view = inflater.inflate(R.layout.food_item_horizontal, parent, false);
         return new GetAllRecyclerViewAdapter.MyViewHolder(view);
     }
 
@@ -57,9 +57,9 @@ public class GetAllRecyclerViewAdapter extends RecyclerView.Adapter<GetAllRecycl
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            imageView = itemView.findViewById(R.id.image);
-            tv_food_name = itemView.findViewById(R.id.food_name);
-            tv_food_price = itemView.findViewById(R.id.food_price);
+            imageView = itemView.findViewById(R.id.imageViewProduct);
+            tv_food_name = itemView.findViewById(R.id.textViewProductName);
+            tv_food_price = itemView.findViewById(R.id.textViewProductPrice);
         }
     }
 }

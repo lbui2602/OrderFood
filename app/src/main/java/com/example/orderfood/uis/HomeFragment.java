@@ -165,10 +165,24 @@ public class HomeFragment extends Fragment {
         SearchView searchView = view.findViewById(R.id.home_search_view);
 
         searchView.setOnClickListener(v -> {
-            NavController navController = NavHostFragment.findNavController(HomeFragment.this);
-            Bundle bundle = new Bundle();
-            bundle.putBoolean("focusSearchView", true);
-            navController.navigate(R.id.action_homeFragment_to_allFragment, bundle);
+
+        });
+//        searchView.setIconified(false);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                NavController navController = NavHostFragment.findNavController(HomeFragment.this);
+                Bundle bundle = new Bundle();
+                bundle.putBoolean("focusSearchView", true);
+                bundle.putString("query", query);
+                navController.navigate(R.id.action_homeFragment_to_allFragment, bundle);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
         });
 
 

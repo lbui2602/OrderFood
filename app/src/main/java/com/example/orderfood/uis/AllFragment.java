@@ -111,24 +111,20 @@ public class AllFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                List<Food> list = new ArrayList<>();
-                for (Food food : foodListOriginal) {
-                    if (food.getName().toLowerCase().contains(newText.toLowerCase())) {
-                        list.add(food);
-                    }
-                }
-                foodList.clear();
-                foodList.addAll(list);
-                adapter.notifyDataSetChanged();
+                doSearch(newText);
                 return false;
             }
         });
         focusSearchView = getArguments().getBoolean("focusSearchView");
         if (focusSearchView) {
-            new Handler().postDelayed(() -> {
-                searchView.requestFocus();
-                searchView.setIconified(false);
-            }, 500);
+//            String query = getArguments().getString("query");
+//            new Handler().postDelayed(() -> {
+//                searchView.requestFocus();
+////                searchView.setIconified(false);
+//            }, 500);
+
+        } else {
+            searchView.setVisibility(GONE);
         }
 
         int searchCloseButtonId = searchView.findViewById(androidx.appcompat.R.id.search_close_btn).getId();
@@ -144,10 +140,15 @@ public class AllFragment extends Fragment {
         });
         dbHelper = new DBHelper(getContext());
         foodListOriginal = new FoodRepository(dbHelper).getAll();
+
         foodList = new ArrayList<>(foodListOriginal);
         recyclerView = view.findViewById(R.id.rcvAll);
 
         adapter = new GetAllRecyclerViewAdapter(getContext(), foodList);
+        if(focusSearchView) {
+                String query = getArguments().getString("query");
+                searchView.setQuery(query, false);
+        }
         recyclerView.setAdapter(adapter);
 
         recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
@@ -158,5 +159,17 @@ public class AllFragment extends Fragment {
             }
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+
+    private void doSearch(String newText) {
+        List<Food> list = new ArrayList<>();
+        for (Food food : foodListOriginal) {
+            if (food.getName().toLowerCase().contains(newText.toLowerCase())) {
+                list.add(food);
+            }
+        }
+        foodList.clear();
+        foodList.addAll(list);
+        adapter.notifyDataSetChanged();
     }
 }

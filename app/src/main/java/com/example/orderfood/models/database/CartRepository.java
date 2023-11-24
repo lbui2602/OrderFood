@@ -2,6 +2,7 @@ package com.example.orderfood.models.database;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -18,11 +19,13 @@ public class CartRepository {
     private final String TABLE_NAME = "cart";
     private  FoodRepository foodRepository ;
     private DBHelper dbHelper;
+    Context context;
 
 
-    public CartRepository(DBHelper dbHelper) {
+    public CartRepository(DBHelper dbHelper,Context context) {
         this.dbHelper = dbHelper;
         foodRepository = new FoodRepository(dbHelper);
+        this.context= context;
     }
 
     @SuppressLint("Range")
@@ -41,6 +44,14 @@ public class CartRepository {
                     new Cart(userId,cursor.getInt(cursor.getColumnIndex("food_id")),cursor.getInt(cursor.getColumnIndex("quantity"))));
         }
         return list;
+    }
+    public int money(){
+        List<Cart> list=getFoodsInCartByUserId(PrefManager.getUserId(this.context,"username"));
+        int sum=0;
+        for(int i=0;i<list.size();i++){
+            sum=sum+(Integer.parseInt(foodRepository.getFoodByFoodId(list.get(i).getFoodId()).getPrice())*list.get(i).getQuantity());
+        }
+        return sum;
     }
 
     @SuppressLint("Range")

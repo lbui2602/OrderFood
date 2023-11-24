@@ -11,12 +11,6 @@
         android:layout_width="match_parent"
         android:weightSum="10"
         android:layout_height="match_parent">
-        <ImageView
-            android:src="@drawable/back_icon"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:layout_height="0dp"/>
         <TextView
             android:text="MY ORDER"
             android:textColor="@color/black"
@@ -30,10 +24,11 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcvCart"
             android:layout_width="match_parent"
-            android:layout_weight="7"
+            android:layout_weight="8"
             android:layout_height="0dp"/>
         <Button
             android:text="Checkout"
+            android:id="@+id/btnCheckOut"
             android:layout_weight="0.7"
             android:layout_width="match_parent"
             android:layout_marginLeft="@dimen/_20sdp"

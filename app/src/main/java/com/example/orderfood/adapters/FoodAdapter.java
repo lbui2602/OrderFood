@@ -38,7 +38,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         this.context=context;
         this.list = list;
         dbHelper=new DBHelper(context.getApplicationContext());
-        cartRepository=new CartRepository(dbHelper);
+        cartRepository=new CartRepository(dbHelper, context);
     }
 
     @NonNull

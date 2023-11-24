@@ -184,8 +184,6 @@ public class HomeFragment extends Fragment {
                 return false;
             }
         });
-
-
         cardView= view.findViewById(R.id.get_all);
         cardView.setOnClickListener(v -> {
             NavController navController = NavHostFragment.findNavController(HomeFragment.this);

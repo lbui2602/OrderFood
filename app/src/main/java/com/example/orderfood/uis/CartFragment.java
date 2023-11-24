@@ -5,12 +5,16 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.orderfood.R;
 import com.example.orderfood.adapters.CartAdapter;
@@ -43,6 +47,7 @@ public class CartFragment extends Fragment {
     RecyclerView recyclerView;
 
     CartAdapter cartAdapter;
+    Button btnCheckOut;
     public CartFragment() {
         // Required empty public constructor
     }
@@ -85,12 +90,22 @@ public class CartFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView=view.findViewById(R.id.rcvCart);
+        btnCheckOut=view.findViewById(R.id.btnCheckOut);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this.getContext(),RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(linearLayoutManager);
         dbHelper=new DBHelper(getContext());
-        cartRepository=new CartRepository(dbHelper);
+        cartRepository=new CartRepository(dbHelper,getContext());
         list=cartRepository.getFoodsInCartByUserId(PrefManager.getUserId(getContext(),"username"));
         cartAdapter=new CartAdapter(list,getContext());
         recyclerView.setAdapter(cartAdapter);
+        btnCheckOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavController navController = NavHostFragment.findNavController(CartFragment.this);
+                Bundle bundle = new Bundle();
+                bundle.putInt("money", cartRepository.money());
+                navController.navigate(R.id.action_cartFragment_to_payFragment, bundle);
+            }
+        });
     }
 }

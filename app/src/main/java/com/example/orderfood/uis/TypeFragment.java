@@ -92,7 +92,7 @@ public class TypeFragment extends Fragment implements IClick {
         rcv=view.findViewById(R.id.rcvFood);
         dbHelper=new DBHelper(getContext());
         foodRepository=new FoodRepository(dbHelper);
-        cartRepository=new CartRepository(dbHelper);
+        cartRepository=new CartRepository(dbHelper,getContext());
         int menuId=getArguments().getInt("menu_id");
         list=foodRepository.getFoodByMenuId(menuId);
         Log.d("TAG", "onViewCreated: "+list.get(4).getImage());

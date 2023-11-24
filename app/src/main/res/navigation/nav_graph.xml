@@ -88,5 +88,9 @@
         android:id="@+id/payFragment"
         android:name="com.example.orderfood.uis.PayFragment"
         android:label="fragment_pay"
-        tools:layout="@layout/fragment_pay" />
+        tools:layout="@layout/fragment_pay" >
+        <action
+            android:id="@+id/action_payFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+    </fragment>
 </navigation>

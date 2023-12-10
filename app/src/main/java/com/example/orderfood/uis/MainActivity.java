@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 .findFragmentById(R.id.nav_host_fragment);
         NavController navController=navHostFragment.getNavController();
         NavigationUI.setupWithNavController(bnvMain,navController);
-//        deleteDatabase("food.db");
+        deleteDatabase("food.db");
         dbHelper=new DBHelper(this);
         UserRepository userRepository=new UserRepository(dbHelper);
 //        Log.d("TAG", "initView: "+userRepository.getAllUser().get(0).getUsername());

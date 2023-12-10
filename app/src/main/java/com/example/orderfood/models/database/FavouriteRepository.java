@@ -46,6 +46,21 @@ public class FavouriteRepository {
         }
         return list;
     }
+    public List<Integer> getFoodId(int userId) {
+        String statement = "SELECT food_id FROM " + TABLE_NAME+" WHERE user_id = ?";
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(statement, new String[]{userId+""});
+
+        List<Integer> idList = new ArrayList<>();
+
+        while (cursor.moveToNext()) {
+            idList.add(
+                    cursor.getInt(0)
+            );
+        }
+        return idList;
+    }
     public void addFavourite(Favorite favorite){
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -55,9 +70,11 @@ public class FavouriteRepository {
         db.close();
     }
 
-    public void deleteFavourite(int id){
+    public void deleteFavourite(int userId,int foodId){
         SQLiteDatabase db=dbHelper.getWritableDatabase();
-        db.delete(TABLE_NAME,"id = ?",new String[]{id+""});
+        db.delete(TABLE_NAME,
+                "user_id" + " = ? AND " + "food_id" + " = ?",
+                new String[]{String.valueOf(userId), String.valueOf(foodId)});
         db.close();
     }
 

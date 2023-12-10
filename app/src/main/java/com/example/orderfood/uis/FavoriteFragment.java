@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.orderfood.IClick;
 import com.example.orderfood.R;
 import com.example.orderfood.adapters.FavoriteAdapter;
 import com.example.orderfood.adapters.FoodAdapter;
@@ -34,7 +35,7 @@ import java.util.List;
  * Use the {@link FavoriteFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FavoriteFragment extends Fragment {
+public class FavoriteFragment extends Fragment implements IClick {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -102,11 +103,17 @@ public class FavoriteFragment extends Fragment {
         String username = PrefManager.getString(getContext(), "username");
         User user=userRepository.getUserByUsername(username);
         favoriteList = favouriteRepository.getFoodsByUserId(user.getId());
-        foodAdapter = new FoodAdapter(favoriteList,getContext());
+        foodAdapter = new FoodAdapter(favoriteList,getContext(),FavoriteFragment.this);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this.getContext(),RecyclerView.VERTICAL,false);
         GridLayoutManager gridLayoutManager =new GridLayoutManager(this.getContext(),2);
         rcv.setLayoutManager(gridLayoutManager);
         rcv.setAdapter(foodAdapter);
+        foodAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onClickDeleteFavorite(int foodId, int pos) {
+        favoriteList.remove(pos);
         foodAdapter.notifyDataSetChanged();
     }
 }

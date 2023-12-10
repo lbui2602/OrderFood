@@ -96,15 +96,16 @@ public class TypeFragment extends Fragment implements IClick {
         int menuId=getArguments().getInt("menu_id");
         list=foodRepository.getFoodByMenuId(menuId);
         Log.d("TAG", "onViewCreated: "+list.get(4).getImage());
-        foodAdapter=new FoodAdapter(list,getContext());
+        foodAdapter=new FoodAdapter(list,getContext(),TypeFragment.this);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this.getContext(),RecyclerView.VERTICAL,false);
         GridLayoutManager gridLayoutManager =new GridLayoutManager(this.getContext(),2);
         rcv.setLayoutManager(gridLayoutManager);
         rcv.setAdapter(foodAdapter);
     }
 
+
     @Override
-    public void onClickAddToCart(Cart cart) {
-        cartRepository.updateCart(cart,1);
+    public void onClickDeleteFavorite(int foodId, int pos) {
+
     }
 }

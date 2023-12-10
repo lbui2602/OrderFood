@@ -18,9 +18,12 @@ import com.bumptech.glide.Glide;
 import com.example.orderfood.IClick;
 import com.example.orderfood.R;
 import com.example.orderfood.models.Cart;
+import com.example.orderfood.models.Favorite;
 import com.example.orderfood.models.Food;
 import com.example.orderfood.models.database.CartRepository;
 import com.example.orderfood.models.database.DBHelper;
+import com.example.orderfood.models.database.FavouriteRepository;
+import com.example.orderfood.models.database.FoodRepository;
 import com.example.orderfood.models.database.PrefManager;
 
 import java.util.List;
@@ -29,16 +32,20 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
     List<Food> list;
     Context context;
 
-    IClick iClick;
-
     CartRepository cartRepository;
     DBHelper dbHelper;
+    FavouriteRepository favouriteRepository;
+    List<Integer> listId ;
+    IClick iClick;
 
-    public FoodAdapter(List<Food> list, Context context) {
+    public FoodAdapter(List<Food> list, Context context,IClick iClick) {
         this.context=context;
         this.list = list;
         dbHelper=new DBHelper(context.getApplicationContext());
         cartRepository=new CartRepository(dbHelper, context);
+        favouriteRepository=new FavouriteRepository(dbHelper);
+        listId = favouriteRepository.getFoodId(PrefManager.getUserId(context, "username"));
+        this.iClick=iClick;
     }
 
     @NonNull
@@ -68,6 +75,26 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
                     cartRepository.addCart(cart);
                 }
                 Toast.makeText(context, "Successful", Toast.LENGTH_SHORT).show();
+            }
+        });
+        if(listId.contains(food.getId())){
+            holder.imgFavorite.setImageResource(R.drawable.favorite_icon_checked);
+        }else{
+            holder.imgFavorite.setImageResource(R.drawable.favorite_icon);
+        }
+        holder.imgFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(listId.contains(food.getId())){
+                    holder.imgFavorite.setImageResource(R.drawable.favorite_icon);
+                    listId.remove(food.getId());
+                    iClick.onClickDeleteFavorite(food.getId(),position);
+                    favouriteRepository.deleteFavourite(PrefManager.getUserId(context,"username"), food.getId());
+                }else{
+                    holder.imgFavorite.setImageResource(R.drawable.favorite_icon_checked);
+                    listId.add(food.getId());
+                    favouriteRepository.addFavourite(new Favorite(PrefManager.getUserId(context,"username"), food.getId()));
+                }
             }
         });
     }

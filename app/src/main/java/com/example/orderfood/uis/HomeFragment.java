@@ -125,7 +125,7 @@ public class HomeFragment extends Fragment {
          for(int i = 0; i < quantity; i++) {
              setSpecialDetail(specialList.get(i), getRandomFood());
              //set recommend
-             Glide.with(this).load(getRandomFood().getImage()).into(recommendedList.get(i));
+             setRecommenDetail(recommendedList.get(i), getRandomFood());
          }
     }
 
@@ -139,8 +139,17 @@ public class HomeFragment extends Fragment {
     private void setSpecialDetail(SpecialContainer specialContainer, Food food) {
         Glide.with(this).load(food.getImage()).into(specialContainer.getImageView());
         specialContainer.getFoodName().setText(food.getName());
-        specialContainer.getFoodPrice().setText(food.getPrice());
+        specialContainer.getFoodPrice().setText(food.getPrice() + " vnd");
         specialContainer.getSeeDetail().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navigationToDetail(food.getId());
+            }
+        });
+    }
+    private void setRecommenDetail(ImageView imageView, Food food) {
+        Glide.with(this).load(food.getImage()).into(imageView);
+        imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 navigationToDetail(food.getId());

@@ -122,7 +122,11 @@ VALUES (35,'Twister','20000', 'https://images.foody.vn/res/g99/985959/s400x400/e
 INSERT INTO Cart (user_id,food_id,quantity)
 VALUES (1,1,1);
 INSERT INTO Favourite (user_id,food_id)
-VALUES (1,1);
+VALUES (1,5);
+INSERT INTO Favourite (user_id,food_id)
+VALUES (1,4);
+INSERT INTO Favourite (user_id,food_id)
+VALUES (1,2);
 
 
 

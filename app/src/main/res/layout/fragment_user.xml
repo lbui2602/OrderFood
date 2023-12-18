@@ -19,61 +19,103 @@
         android:scaleType="centerCrop"
         android:src="@drawable/user_image" />
 
-    <EditText
-        android:id="@+id/edt_usernameProfile"
-        android:layout_width="@dimen/_150sdp"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginRight="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_10sdp"
-        android:background="@drawable/edit_text_shape"
-        android:elevation="5dp"
-        android:enabled="false"
-        android:gravity="center"
-        android:hint="Username" />
-
-    <EditText
-        android:id="@+id/edt_nameProfile"
+    <TextView
+        android:textSize="@dimen/_20sdp"
+        android:textColor="@color/black"
+        android:text="buiducluong2602@gmail.com"
+        android:id="@+id/tvUsernameProfile"
+        android:textStyle="bold"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginRight="@dimen/_10sdp"
         android:layout_marginBottom="@dimen/_10sdp"
-        android:background="@drawable/edit_text_shape"
-        android:elevation="5dp"
-        android:hint="Full Name"
-        android:paddingLeft="@dimen/_10sdp" />
-
-    <EditText
-        android:id="@+id/edt_addrProfile"
+        android:gravity="center" />
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginRight="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_10sdp"
-        android:background="@drawable/edit_text_shape"
-        android:elevation="5dp"
-        android:hint="Address"
-        android:paddingLeft="@dimen/_10sdp" />
+        android:orientation="horizontal"
+        android:weightSum="10"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+            <TextView
+                android:textSize="@dimen/_20sdp"
+                android:textColor="@color/black"
+                android:text="Fullname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp" />
 
-    <EditText
-        android:id="@+id/edt_phoneNumberProfile"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginRight="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_10sdp"
-        android:background="@drawable/edit_text_shape"
-        android:elevation="5dp"
-        android:hint="Phone number"
-        android:paddingLeft="@dimen/_10sdp" />
+            <TextView
+                android:textSize="@dimen/_20sdp"
+                android:textColor="@color/black"
+                android:text="Address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp" />
+
+            <TextView
+                android:textSize="@dimen/_20sdp"
+                android:textColor="@color/black"
+                android:text="Phone number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:orientation="vertical"
+            android:layout_weight="6"
+            android:layout_height="match_parent">
+            <TextView
+                android:textSize="@dimen/_20sdp"
+                android:textColor="@color/black"
+                android:text="buiducluong2602@gmail.com"
+                android:id="@+id/tvFullnameProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp" />
+
+            <TextView
+                android:textSize="@dimen/_20sdp"
+                android:textColor="@color/black"
+                android:text="buiducluong2602@gmail.com"
+                android:id="@+id/tvAddressProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp" />
+
+            <TextView
+                android:textSize="@dimen/_20sdp"
+                android:textColor="@color/black"
+                android:text="buiducluong2602@gmail.com"
+                android:id="@+id/tvPhoneProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp" />
+        </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="2">
-
         <Button
             android:id="@+id/btnUpdate"
             android:layout_width="@dimen/_100sdp"

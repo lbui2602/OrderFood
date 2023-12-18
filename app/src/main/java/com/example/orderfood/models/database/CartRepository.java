@@ -98,6 +98,11 @@ public class CartRepository {
         db.insert(TABLE_NAME, null, values);
         db.close();
     }
+    public void deleteCart(int foodId){
+        SQLiteDatabase db=dbHelper.getWritableDatabase();
+        db.delete(TABLE_NAME,"food_id = ?",new String[]{foodId+""});
+        db.close();
+    }
     public void updateCart(Cart cart,int foodId){
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();

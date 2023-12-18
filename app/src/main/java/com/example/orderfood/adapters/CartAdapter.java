@@ -1,5 +1,6 @@
 package com.example.orderfood.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,7 +45,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CartViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Cart cart=list.get(position);
         Glide.with(context).load(foodRepository.getFoodByFoodId(cart.getFoodId()).getImage()).into(holder.imgAnhInCart);
         holder.tvNameInCart.setText(foodRepository.getFoodByFoodId(cart.getFoodId()).getName());
@@ -61,9 +62,16 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         holder.imgTru.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.tvQuantity.setText(String.valueOf(Integer.parseInt(holder.tvQuantity.getText().toString())-1));
-                cart.setQuantity(Integer.parseInt(holder.tvQuantity.getText().toString()));
-                cartRepository.updateCart(cart,cart.getFoodId());
+                if(Integer.parseInt(holder.tvQuantity.getText().toString())==1){
+                    cartRepository.deleteCart(list.get(position).getFoodId());
+                    list.remove(position);
+                    notifyDataSetChanged();
+                }
+                else{
+                    holder.tvQuantity.setText(String.valueOf(Integer.parseInt(holder.tvQuantity.getText().toString())-1));
+                    cart.setQuantity(Integer.parseInt(holder.tvQuantity.getText().toString()));
+                    cartRepository.updateCart(cart,cart.getFoodId());
+                }
             }
         });
     }

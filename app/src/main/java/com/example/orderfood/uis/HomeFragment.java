@@ -112,7 +112,6 @@ public class HomeFragment extends Fragment {
     }
     private void getSpecialAndRecommend(View view) {
         specialList = new ArrayList<>();
-
         final int quantity = 3;
         for (int i = 1; i <= quantity; i++) {
             int imageId = getResources().getIdentifier("special_image_" + i, "id", requireContext().getPackageName());
@@ -210,6 +209,42 @@ public class HomeFragment extends Fragment {
                 navigationToType(3);
             }
         });
+        specialList.get(0).getSeeDetail().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navigationToDetail(4);
+            }
+        });
+        specialList.get(1).getSeeDetail().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navigationToDetail(11);
+            }
+        });
+        specialList.get(2).getSeeDetail().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navigationToDetail(12);
+            }
+        });
+        recommendedList.get(0).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navigationToDetail(35);
+            }
+        });
+        recommendedList.get(1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navigationToDetail(34);
+            }
+        });
+        recommendedList.get(2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navigationToDetail(31);
+            }
+        });
     }
 
     private void navigationToType(int menuId) {
@@ -217,5 +252,11 @@ public class HomeFragment extends Fragment {
         bundle.putInt("menu_id",menuId);
         NavController navController = NavHostFragment.findNavController(HomeFragment.this);
         navController.navigate(R.id.action_homeFragment_to_typeFragment,bundle);
+    }
+    private void navigationToDetail(int foodId) {
+        Bundle bundle=new Bundle();
+        bundle.putInt("food_id",foodId);
+        NavController navController = NavHostFragment.findNavController(HomeFragment.this);
+        navController.navigate(R.id.action_homeFragment_to_detailsFragment,bundle);
     }
 }

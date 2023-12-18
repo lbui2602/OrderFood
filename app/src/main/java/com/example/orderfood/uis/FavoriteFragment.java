@@ -16,9 +16,7 @@ import android.view.ViewGroup;
 
 import com.example.orderfood.IClick;
 import com.example.orderfood.R;
-import com.example.orderfood.adapters.FavoriteAdapter;
 import com.example.orderfood.adapters.FoodAdapter;
-import com.example.orderfood.models.Favorite;
 import com.example.orderfood.models.Food;
 import com.example.orderfood.models.User;
 import com.example.orderfood.models.database.DBHelper;
@@ -99,10 +97,22 @@ public class FavoriteFragment extends Fragment implements IClick {
         dbHelper = new DBHelper(getContext());
         foodRepository=new FoodRepository(dbHelper);
         favouriteRepository = new FavouriteRepository(dbHelper);
+        List<Integer> list=new ArrayList<>();
+        list=favouriteRepository.getFavorite(1);
+        for(int i=0;i<list.size();i++){
+            Log.d("TAG", "favorite: "+list.get(i));
+        }
         userRepository=new UserRepository(dbHelper);
         String username = PrefManager.getString(getContext(), "username");
         User user=userRepository.getUserByUsername(username);
-        favoriteList = favouriteRepository.getFoodsByUserId(user.getId());
+//        favoriteList = favouriteRepository.getFoodsByUserId(user.getId());
+        favoriteList=new ArrayList<>();
+        for(int i=0;i<list.size();i++){
+            favoriteList.add(foodRepository.getFoodByFoodId(list.get(i)));
+        }
+        for(int i=0;i<favoriteList.size();i++){
+            Log.d("TAG", "fasvorite: "+ favoriteList.get(i).getName());
+        }
         foodAdapter = new FoodAdapter(favoriteList,getContext(),FavoriteFragment.this);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this.getContext(),RecyclerView.VERTICAL,false);
         GridLayoutManager gridLayoutManager =new GridLayoutManager(this.getContext(),2);
@@ -115,5 +125,10 @@ public class FavoriteFragment extends Fragment implements IClick {
     public void onClickDeleteFavorite(int foodId, int pos) {
         favoriteList.remove(pos);
         foodAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onClickFoodItem(Food food) {
+
     }
 }

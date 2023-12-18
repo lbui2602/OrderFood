@@ -1,18 +1,15 @@
 package com.example.orderfood.uis;
 
-import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.SearchView;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,13 +20,12 @@ import com.bumptech.glide.Glide;
 import com.example.orderfood.R;
 import com.example.orderfood.models.Food;
 import com.example.orderfood.models.database.DBHelper;
-import com.example.orderfood.models.database.FavouriteRepository;
 import com.example.orderfood.models.database.FoodRepository;
 import com.example.orderfood.models.database.PrefManager;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -94,14 +90,6 @@ public class HomeFragment extends Fragment {
         dbHelper=new DBHelper(getContext());
         foodList = new FoodRepository(dbHelper).getAll();
 
-        List<Food> list = new ArrayList<>();
-        for (Food food : foodList) {
-            if (food.getName().length() < 12) {
-                list.add(food);
-            }
-        }
-        foodList = list;
-
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         getSpecialAndRecommend(view);
         setSpecialAndRecommend();
@@ -135,23 +123,26 @@ public class HomeFragment extends Fragment {
     }
 
     public void setSpecialAndRecommend() {
+        foodList = foodList.stream().filter(food -> food.getName().length() < 12).collect(Collectors.toList());
         final int quantity = 3;
          for(int i = 0; i < quantity; i++) {
-             SpecialContainer specialContainer = specialList.get(i);
-
-             Food food = foodList.get(i);
-             Picasso.get().load(food.getImage()).into(specialContainer.getImageView());
-             Glide.with(this).load(food.getImage()).into(specialContainer.getImageView());
-
-
-             specialContainer.getFoodName().setText(food.getName());
-             specialContainer.getFoodPrice().setText(food.getPrice());
+             setSpecialDetail(specialList.get(i), getRandomFood());
+             //set recommend
+             Glide.with(this).load(getRandomFood().getImage()).into(recommendedList.get(i));
          }
-        for(int i = 0; i < quantity; i++) {
-            Food food = foodList.get(foodList.size() - i - 1);
-            Glide.with(this).load(food.getImage()).into(recommendedList.get(i));
-        }
+    }
 
+    private Food getRandomFood() {
+        int index = (int) (Math.random() * (foodList.size() - 1));
+        Food food = foodList.get(index);
+        foodList.remove(index);
+        return food;
+    }
+
+    private void setSpecialDetail(SpecialContainer specialContainer, Food food) {
+        Glide.with(this).load(food.getImage()).into(specialContainer.getImageView());
+        specialContainer.getFoodName().setText(food.getName());
+        specialContainer.getFoodPrice().setText(food.getPrice());
     }
 
     @Override

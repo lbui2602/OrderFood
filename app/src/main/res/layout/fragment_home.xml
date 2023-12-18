@@ -362,7 +362,6 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/_10sdp"
                                     app:cardCornerRadius="20dp">
-
                                     <Button
                                         android:id="@+id/special_see_detail_2"
                                         android:layout_width="wrap_content"

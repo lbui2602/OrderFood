@@ -112,9 +112,7 @@ public class HomeFragment extends Fragment {
                 view.findViewById(priceId),
                 view.findViewById(seeDetailId)));
         }
-
         recommendedList = new ArrayList<>();
-
         for (int i = 1; i <= quantity; i++) {
             int resId = getResources().getIdentifier("recommend_image_" + i, "id", requireContext().getPackageName());
             recommendedList.add(view.findViewById(resId));
@@ -142,6 +140,12 @@ public class HomeFragment extends Fragment {
         Glide.with(this).load(food.getImage()).into(specialContainer.getImageView());
         specialContainer.getFoodName().setText(food.getName());
         specialContainer.getFoodPrice().setText(food.getPrice());
+        specialContainer.getSeeDetail().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navigationToDetail(food.getId());
+            }
+        });
     }
 
     @Override
@@ -200,42 +204,42 @@ public class HomeFragment extends Fragment {
                 navigationToType(3);
             }
         });
-        specialList.get(0).getSeeDetail().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navigationToDetail(4);
-            }
-        });
-        specialList.get(1).getSeeDetail().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navigationToDetail(11);
-            }
-        });
-        specialList.get(2).getSeeDetail().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navigationToDetail(12);
-            }
-        });
-        recommendedList.get(0).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navigationToDetail(35);
-            }
-        });
-        recommendedList.get(1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navigationToDetail(34);
-            }
-        });
-        recommendedList.get(2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navigationToDetail(31);
-            }
-        });
+//        specialList.get(0).getSeeDetail().setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                navigationToDetail(4);
+//            }
+//        });
+//        specialList.get(1).getSeeDetail().setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                navigationToDetail(11);
+//            }
+//        });
+//        specialList.get(2).getSeeDetail().setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                navigationToDetail(12);
+//            }
+//        });
+//        recommendedList.get(0).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                navigationToDetail(35);
+//            }
+//        });
+//        recommendedList.get(1).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                navigationToDetail(34);
+//            }
+//        });
+//        recommendedList.get(2).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                navigationToDetail(31);
+//            }
+//        });
     }
 
     private void navigationToType(int menuId) {

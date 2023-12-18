@@ -26,6 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <TextView
+            android:id="@+id/tvPay"
             android:text="Select payment method"
             android:textColor="@color/black"
             android:textSize="@dimen/_20sdp"
@@ -36,6 +37,15 @@
         <TextView
             android:id="@+id/tvMoney"
             android:text="SO tien ban phai thanh toan la: "
+            android:textColor="#F44336"
+            android:textSize="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/tvMessPay"
+            android:text=""
             android:textColor="#F44336"
             android:textSize="@dimen/_15sdp"
             android:layout_marginTop="@dimen/_20sdp"

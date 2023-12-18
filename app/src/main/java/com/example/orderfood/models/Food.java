@@ -1,6 +1,8 @@
 package com.example.orderfood.models;
 
-public class Food {
+import java.io.Serializable;
+
+public class Food implements Serializable {
     private int id;
     private String name;
     private String price;

@@ -34,7 +34,6 @@ public class LoginActivity extends AppCompatActivity {
         initView();
         initData();
 
-//        Log.d("TAG", "onCreate: "+userRepository.getUserByUsername(username).getPassword());
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,9 +48,11 @@ public class LoginActivity extends AppCompatActivity {
                         }
                         else{
                             //mat klhau sai
+                            Toast.makeText(LoginActivity.this, "Mat khau sai", Toast.LENGTH_SHORT).show();
                         }
                     }else{
                         //ten dang nhap sai
+                        Toast.makeText(LoginActivity.this, "Khong ton tai ten dang nhap", Toast.LENGTH_SHORT).show();
                     }
                 }
             }

@@ -16,7 +16,7 @@ import java.util.List;
 
 public class FavouriteRepository {
 
-    private final String TABLE_NAME = "favourite";
+    private final String TABLE_NAME = "Favourite";
     private  FoodRepository foodRepository ;
     private DBHelper dbHelper;
 
@@ -41,10 +41,25 @@ public class FavouriteRepository {
             ));
         }
         List<Food> list=new ArrayList<>();
-        for(int i=0;i< listFavorite.size();i++){
+        for(int i=0;i<listFavorite.size();i++){
             list.add(foodRepository.getFoodByFoodId(listFavorite.get(i).getFoodId()));
         }
         return list;
+    }
+    public List<Integer> getFavorite(int userId) {
+        String statement = "SELECT food_id FROM " + TABLE_NAME+" WHERE user_id = ?";
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(statement, new String[]{userId+""});
+
+        List<Integer> list = new ArrayList<>();
+
+        while (cursor.moveToNext()) {
+            list.add(cursor.getInt(0)
+            );
+        }
+        return list;
+
     }
     public List<Integer> getFoodId(int userId) {
         String statement = "SELECT food_id FROM " + TABLE_NAME+" WHERE user_id = ?";

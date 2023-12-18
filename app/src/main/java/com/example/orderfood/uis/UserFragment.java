@@ -1,7 +1,12 @@
 package com.example.orderfood.uis;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -10,9 +15,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.orderfood.R;
+import com.example.orderfood.models.User;
 import com.example.orderfood.models.database.DBHelper;
+import com.example.orderfood.models.database.PrefManager;
+import com.example.orderfood.models.database.UserRepository;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,6 +40,12 @@ public class UserFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    ImageView imageProfile;
+    TextView tvUsernameProfile, tvFullnameProfile, tvAddressProfile, tvPhoneProfile;
+    Button btnUpdate, btnLogout;
+    DBHelper dbHelper;
+    UserRepository userRepository;
+    IClickLogOut iClickLogOut;
 
     public UserFragment() {
         // Required empty public constructor
@@ -62,30 +78,66 @@ public class UserFragment extends Fragment {
         }
     }
 
-    ImageView imageProfile;
-    EditText usernameProfile, fullnameProfile, addrProfile, phoneNumberProfile;
-    Button btnUpdate, btnLogout;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_user, container, false);
 
-        imageProfile = view.findViewById(R.id.image_userProfile);
-        usernameProfile = view.findViewById(R.id.edt_usernameProfile);
-        fullnameProfile = view.findViewById(R.id.edt_nameProfile);
-        addrProfile = view.findViewById(R.id.edt_addrProfile);
-        phoneNumberProfile = view.findViewById(R.id.edt_phoneNumberProfile);
-        btnUpdate = view.findViewById(R.id.btnUpdate);
-        btnLogout = view.findViewById(R.id.btnLogout);
-        
-        getUserData();
 
         return view;
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        imageProfile = view.findViewById(R.id.image_userProfile);
+        tvUsernameProfile = view.findViewById(R.id.tvUsernameProfile);
+        tvFullnameProfile = view.findViewById(R.id.tvFullnameProfile);
+        tvAddressProfile = view.findViewById(R.id.tvAddressProfile);
+        tvPhoneProfile = view.findViewById(R.id.tvPhoneProfile);
+        btnUpdate = view.findViewById(R.id.btnUpdate);
+        btnLogout = view.findViewById(R.id.btnLogout);
+        dbHelper=new DBHelper(getContext());
+        userRepository=new UserRepository(dbHelper);
+        getUserData();
+    }
+
     private void getUserData() {
+        String username= PrefManager.getString(getContext(),"username");
+        User user=userRepository.getUserByUsername(username);
+        if(user.getImage()!=null){
+            Glide.with(getContext()).load(user.getAddress()).into(imageProfile);
+        }
+        tvUsernameProfile.setText(user.getUsername());
+        tvFullnameProfile.setText(user.getFirstname()+" "+user.getLastname());
+        tvAddressProfile.setText(user.getAddress());
+        tvPhoneProfile.setText(user.getPhoneNumber());
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getContext(), LoginActivity.class);
+                startActivity(intent);
+                PrefManager.removeKey(getContext(),"username");
+                if(iClickLogOut!=null){
+                    iClickLogOut.onClick();
+                }
+            }
+        });
+    }
+    public interface IClickLogOut{
+        void onClick();
+    }
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof IClickLogOut) {
+            iClickLogOut = (IClickLogOut) context;
+        } else {
+            throw new RuntimeException(context.toString() + " must implement OnFragmentInteractionListener");
+        }
     }
 
 

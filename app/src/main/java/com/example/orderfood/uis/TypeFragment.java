@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,6 +25,7 @@ import com.example.orderfood.models.database.CartRepository;
 import com.example.orderfood.models.database.DBHelper;
 import com.example.orderfood.models.database.FoodRepository;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -47,6 +50,7 @@ public class TypeFragment extends Fragment implements IClick {
     DBHelper dbHelper;
     CartRepository cartRepository;
     FoodRepository foodRepository;
+    NavController navController;
 
     public TypeFragment() {
         // Required empty public constructor
@@ -89,6 +93,7 @@ public class TypeFragment extends Fragment implements IClick {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        navController= NavHostFragment.findNavController(TypeFragment.this);
         rcv=view.findViewById(R.id.rcvFood);
         dbHelper=new DBHelper(getContext());
         foodRepository=new FoodRepository(dbHelper);
@@ -107,5 +112,12 @@ public class TypeFragment extends Fragment implements IClick {
     @Override
     public void onClickDeleteFavorite(int foodId, int pos) {
 
+    }
+
+    @Override
+    public void onClickFoodItem(Food food) {
+        Bundle bundle=new Bundle();
+        bundle.putInt("food_id", food.getId());
+        navController.navigate(R.id.action_typeFragment_to_detailsFragment,bundle);
     }
 }

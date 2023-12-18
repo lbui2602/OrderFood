@@ -52,6 +52,19 @@ public class UserRepository {
         db.insert(TABLE_NAME, null, values);
         db.close();
     }
+    public void updateUser(User user,int userId){
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("username", user.getUsername());
+        values.put("first_name",user.getFirstname());
+        values.put("last_name",user.getLastname());
+        values.put("password",user.getPassword());
+        values.put("image",user.getImage());
+        values.put("phone_number",user.getPhoneNumber());
+        values.put("address",user.getAddress());
+        db.update(TABLE_NAME, values, "user_id = ?",new String[]{userId+""});
+        db.close();
+    }
     public void deleteUserByUSerId(int id){
         SQLiteDatabase db=dbHelper.getWritableDatabase();
         db.delete(TABLE_NAME,"id = ?",new String[]{id+""});
@@ -60,7 +73,6 @@ public class UserRepository {
     @SuppressLint("Range")
     public User getUserByUsername(String username) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-
         String[] projection = {
                 "user_id",
                 "username",
@@ -71,7 +83,6 @@ public class UserRepository {
                 "phone_number",
                 "address"
         };
-
         String selection = "username LIKE ?";
         String[] selectionArgs = { username };
 
@@ -84,9 +95,7 @@ public class UserRepository {
                 null,
                 null
         );
-
         User user = null;
-
         if (cursor != null && cursor.moveToFirst()) {
             // Đảm bảo rằng con trỏ có ít nhất một dòng trước khi cố gắng truy xuất dữ liệu
             user = new User(

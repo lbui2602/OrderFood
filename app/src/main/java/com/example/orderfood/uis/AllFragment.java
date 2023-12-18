@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.orderfood.IClick;
 import com.example.orderfood.R;
 import com.example.orderfood.adapters.GetAllRecyclerViewAdapter;
 import com.example.orderfood.models.Food;
@@ -37,7 +38,7 @@ import java.util.List;
  * Use the {@link AllFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AllFragment extends Fragment {
+public class AllFragment extends Fragment implements IClick {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -56,6 +57,7 @@ public class AllFragment extends Fragment {
     Boolean focusSearchView;
 
     RecyclerView recyclerView;
+    NavController navController;
 
     public AllFragment() {
         // Required empty public constructor
@@ -101,6 +103,7 @@ public class AllFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        navController=NavHostFragment.findNavController(AllFragment.this);
 
         searchView = view.findViewById(R.id.get_all_search);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -144,7 +147,7 @@ public class AllFragment extends Fragment {
         foodList = new ArrayList<>(foodListOriginal);
         recyclerView = view.findViewById(R.id.rcvAll);
 
-        adapter = new GetAllRecyclerViewAdapter(getContext(), foodList);
+        adapter = new GetAllRecyclerViewAdapter(getContext(), foodList,AllFragment.this);
         if(focusSearchView) {
                 String query = getArguments().getString("query");
                 searchView.setQuery(query, false);
@@ -171,5 +174,17 @@ public class AllFragment extends Fragment {
         foodList.clear();
         foodList.addAll(list);
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onClickDeleteFavorite(int foodId, int pos) {
+
+    }
+
+    @Override
+    public void onClickFoodItem(Food food) {
+        Bundle bundle=new Bundle();
+        bundle.putInt("food_id", food.getId());
+        navController.navigate(R.id.action_allFragment_to_detailsFragment,bundle);
     }
 }

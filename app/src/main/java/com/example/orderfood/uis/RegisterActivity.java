@@ -47,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
                     if(firstname.length()!=0 && lastname.length()!=0 && username.length()!=0 &&password.length()!=0 &&passwordConfirm.length()!=0 &&image.length()!=0 &&phoneNumber.length()!=0 && address.length()!=0){
                         if(passwordConfirm.equals(password)){
                             User user=new User(username,firstname,lastname,password,image,phoneNumber,address);
-//                            userRepository.addUser(user);
+                            userRepository.addUser(user);
                             Intent intent=new Intent();
                             intent.putExtra("result",user);
                             setResult(RESULT_OK,intent);

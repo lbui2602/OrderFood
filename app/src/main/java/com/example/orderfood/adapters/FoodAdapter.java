@@ -3,10 +3,12 @@ package com.example.orderfood.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -87,14 +89,21 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
             public void onClick(View v) {
                 if(listId.contains(food.getId())){
                     holder.imgFavorite.setImageResource(R.drawable.favorite_icon);
-                    listId.remove(food.getId());
                     iClick.onClickDeleteFavorite(food.getId(),position);
                     favouriteRepository.deleteFavourite(PrefManager.getUserId(context,"username"), food.getId());
+                    listId=favouriteRepository.getFoodId(PrefManager.getUserId(context, "username"));
+                    Log.d("TAG", "onClick: "+listId.size());
                 }else{
                     holder.imgFavorite.setImageResource(R.drawable.favorite_icon_checked);
                     listId.add(food.getId());
                     favouriteRepository.addFavourite(new Favorite(PrefManager.getUserId(context,"username"), food.getId()));
                 }
+            }
+        });
+        holder.llFoodItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                iClick.onClickFoodItem(food);
             }
         });
     }
@@ -107,6 +116,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
     public class FoodViewHolder extends RecyclerView.ViewHolder{
         TextView tvName,tvPrice;
         ImageView imgFood,imgFavorite,imgAddToCart;
+        LinearLayout llFoodItem;
         public FoodViewHolder(@NonNull View itemView) {
             super(itemView);
             tvName=itemView.findViewById(R.id.tvName);
@@ -114,6 +124,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
             imgFood=itemView.findViewById(R.id.imgFood);
             imgFavorite=itemView.findViewById(R.id.imgFavorite);
             imgAddToCart=itemView.findViewById(R.id.imgAddToCart);
+            llFoodItem=itemView.findViewById(R.id.llFoodItem);
         }
     }
 }

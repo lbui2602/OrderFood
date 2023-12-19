@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -52,6 +54,7 @@ public class FavoriteFragment extends Fragment implements IClick {
     FavouriteRepository favouriteRepository;
     FoodRepository foodRepository;
     UserRepository userRepository;
+    NavController navController;
     public FavoriteFragment() {
         // Required empty public constructor
     }
@@ -95,6 +98,7 @@ public class FavoriteFragment extends Fragment implements IClick {
         super.onViewCreated(view, savedInstanceState);
         rcv = view.findViewById(R.id.rcvFavoriteFood);
         dbHelper = new DBHelper(getContext());
+        navController= NavHostFragment.findNavController(FavoriteFragment.this);
         foodRepository=new FoodRepository(dbHelper);
         favouriteRepository = new FavouriteRepository(dbHelper);
         List<Integer> list=new ArrayList<>();
@@ -120,7 +124,6 @@ public class FavoriteFragment extends Fragment implements IClick {
         rcv.setAdapter(foodAdapter);
         foodAdapter.notifyDataSetChanged();
     }
-
     @Override
     public void onClickDeleteFavorite(int foodId, int pos) {
         favoriteList.remove(pos);
@@ -129,6 +132,8 @@ public class FavoriteFragment extends Fragment implements IClick {
 
     @Override
     public void onClickFoodItem(Food food) {
-
+        Bundle bundle=new Bundle();
+        bundle.putInt("food_id", food.getId());
+        navController.navigate(R.id.action_favoriteFragment_to_detailsFragment,bundle);
     }
 }

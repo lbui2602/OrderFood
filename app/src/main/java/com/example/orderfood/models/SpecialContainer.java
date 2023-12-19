@@ -1,4 +1,4 @@
-package com.example.orderfood.uis;
+package com.example.orderfood.models;
 
 import android.widget.Button;
 import android.widget.ImageView;

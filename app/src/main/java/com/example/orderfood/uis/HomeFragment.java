@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import com.bumptech.glide.Glide;
 import com.example.orderfood.R;
 import com.example.orderfood.models.Food;
+import com.example.orderfood.models.SpecialContainer;
 import com.example.orderfood.models.database.DBHelper;
 import com.example.orderfood.models.database.FoodRepository;
 import com.example.orderfood.models.database.PrefManager;

@@ -48,11 +48,11 @@ public class LoginActivity extends AppCompatActivity {
                         }
                         else{
                             //mat klhau sai
-                            Toast.makeText(LoginActivity.this, "Mat khau sai", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Incorrect pasword!", Toast.LENGTH_SHORT).show();
                         }
                     }else{
                         //ten dang nhap sai
-                        Toast.makeText(LoginActivity.this, "Khong ton tai ten dang nhap", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Username does not exist!", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -82,10 +82,10 @@ public class LoginActivity extends AppCompatActivity {
                         else{
                             edtUsername.setText("1234");
                         }
-                        Toast.makeText(LoginActivity.this, "Dang ki thanh cong", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Register successful!", Toast.LENGTH_SHORT).show();
                     }
                     if(result.getResultCode()==RESULT_CANCELED){
-                        Toast.makeText(LoginActivity.this, "Dang ki khong thanh cong!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Registration failed!", Toast.LENGTH_SHORT).show();
                     }
                 }
             });

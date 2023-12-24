@@ -9,13 +9,12 @@
     tools:context=".uis.UserFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/image_userProfile"
         android:layout_width="160dp"
         android:layout_height="160dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/circular_background"
-        android:backgroundTint="@color/black"
         android:scaleType="centerCrop"
         android:src="@drawable/user_image" />
 

@@ -102,6 +102,7 @@
                 android:textSize="@dimen/_10sdp"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:id="@+id/tvPasswordConfirm"
+                android:inputType="textPassword"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginBottom="@dimen/_1sdp"
                 android:layout_width="wrap_content"

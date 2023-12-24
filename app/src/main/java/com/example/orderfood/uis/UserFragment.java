@@ -8,6 +8,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +25,8 @@ import com.example.orderfood.models.User;
 import com.example.orderfood.models.database.DBHelper;
 import com.example.orderfood.models.database.PrefManager;
 import com.example.orderfood.models.database.UserRepository;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,7 +44,7 @@ public class UserFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    ImageView imageProfile;
+    CircleImageView imageProfile;
     TextView tvUsernameProfile, tvFullnameProfile, tvAddressProfile, tvPhoneProfile;
     Button btnUpdate, btnLogout;
     DBHelper dbHelper;
@@ -108,9 +112,7 @@ public class UserFragment extends Fragment {
     private void getUserData() {
         String username= PrefManager.getString(getContext(),"username");
         User user=userRepository.getUserByUsername(username);
-        if(user.getImage()!=null){
-            Glide.with(getContext()).load(user.getAddress()).into(imageProfile);
-        }
+        Glide.with(getContext()).load(user.getImage()).into(imageProfile);
         tvUsernameProfile.setText(user.getUsername());
         tvFullnameProfile.setText(user.getFirstname()+" "+user.getLastname());
         tvAddressProfile.setText(user.getAddress());
@@ -124,6 +126,13 @@ public class UserFragment extends Fragment {
                 if(iClickLogOut!=null){
                     iClickLogOut.onClick();
                 }
+            }
+        });
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavController navController= NavHostFragment.findNavController(UserFragment.this);
+                navController.navigate(R.id.action_userFragment_to_updateFragment);
             }
         });
     }

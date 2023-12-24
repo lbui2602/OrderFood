@@ -49,6 +49,9 @@
         <action
             android:id="@+id/action_userFragment_to_loginActivity"
             app:destination="@id/loginActivity" />
+        <action
+            android:id="@+id/action_userFragment_to_updateFragment"
+            app:destination="@id/updateFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
@@ -92,5 +95,14 @@
         <action
             android:id="@+id/action_payFragment_to_cartFragment"
             app:destination="@id/cartFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateFragment"
+        android:name="com.example.orderfood.uis.UpdateFragment"
+        android:label="fragment_update"
+        tools:layout="@layout/fragment_update" >
+        <action
+            android:id="@+id/action_updateFragment_to_userFragment"
+            app:destination="@id/userFragment" />
     </fragment>
 </navigation>

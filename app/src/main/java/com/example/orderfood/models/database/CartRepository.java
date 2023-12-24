@@ -103,6 +103,13 @@ public class CartRepository {
         db.delete(TABLE_NAME,"food_id = ?",new String[]{foodId+""});
         db.close();
     }
+    public void removeCartItem(int userId) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.delete(TABLE_NAME,
+                "user_id" + " = ?",
+                new String[]{userId+""});
+        db.close();
+    }
     public void updateCart(Cart cart,int foodId){
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();

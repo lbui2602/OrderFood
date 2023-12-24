@@ -26,15 +26,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <TextView
-            android:id="@+id/tvPay"
-            android:text="Select payment method"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <TextView
             android:id="@+id/tvMoney"
             android:text="SO tien ban phai thanh toan la: "
             android:textColor="#F44336"
@@ -44,23 +35,41 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <TextView
-            android:id="@+id/tvMessPay"
+            android:id="@+id/tvPay"
+            android:text="Select payment method"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <RadioGroup
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginLeft="@dimen/_30sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:id="@+id/radio1"
+                android:textColor="@color/black"
+                android:text="Payment on delivery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <RadioButton
+                android:id="@+id/radio2"
+                android:textColor="@color/black"
+                android:text="Momo banking"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </RadioGroup>
+        <TextView
             android:text=""
+            android:id="@+id/tvMessPay"
             android:textColor="#F44336"
             android:textSize="@dimen/_15sdp"
             android:layout_marginTop="@dimen/_20sdp"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/tvMessPay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:gravity="center"
-            android:textColor="#F44336"
-            android:textSize="@dimen/_15sdp" />
 
         <Button
             android:id="@+id/btnConfirmPay"

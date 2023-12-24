@@ -13,10 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.orderfood.R;
+import com.example.orderfood.models.database.CartRepository;
+import com.example.orderfood.models.database.DBHelper;
+import com.example.orderfood.models.database.PrefManager;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,6 +40,10 @@ public class PayFragment extends Fragment {
     TextView tvMessPay,tvMoney;
     Button btnConfirmPay;
     ImageView imgBack;
+    RadioButton radio1,radio2;
+    DBHelper dbHelper;
+    CartRepository cartRepository;
+
 
     public PayFragment() {
         // Required empty public constructor
@@ -78,16 +86,26 @@ public class PayFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        dbHelper=new DBHelper(getContext());
+        cartRepository=new CartRepository(dbHelper,getContext());
         tvMessPay=view.findViewById(R.id.tvMessPay);
         tvMoney=view.findViewById(R.id.tvMoney);
         btnConfirmPay=view.findViewById(R.id.btnConfirmPay);
         imgBack=view.findViewById(R.id.imgBack);
+        radio1=view.findViewById(R.id.radio1);
+        radio2=view.findViewById(R.id.radio2);
         int money=getArguments().getInt("money");
-        tvMoney.setText("So tien ban can thanh toan la: "+money);
+        tvMoney.setText("Amount to be paid: "+money);
         btnConfirmPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tvMessPay.setText("Ban da thanh toan thanh cong! \n Vui long cho chung toi lam do an");
+                if(!radio1.isChecked()&&!radio2.isChecked()){
+                    Toast.makeText(getContext(), "Please choose payment method!", Toast.LENGTH_SHORT).show();
+                }else{
+                    tvMessPay.setText("Payment successful! \n Please wait a moment!");
+                    cartRepository.removeCartItem(PrefManager.getUserId(getContext(),"username"));
+                }
+                    
             }
         });
         imgBack.setOnClickListener(new View.OnClickListener() {

@@ -48,7 +48,7 @@ public class FavoriteFragment extends Fragment implements IClick {
 
     List<Food> favoriteList;
 
-    FoodAdapter foodAdapter;
+    FoodAdapter favoriteAdapter;
     RecyclerView rcv;
     DBHelper dbHelper;
     FavouriteRepository favouriteRepository;
@@ -102,13 +102,15 @@ public class FavoriteFragment extends Fragment implements IClick {
         foodRepository=new FoodRepository(dbHelper);
         favouriteRepository = new FavouriteRepository(dbHelper);
         List<Integer> list=new ArrayList<>();
-        list=favouriteRepository.getFavorite(1);
-        for(int i=0;i<list.size();i++){
-            Log.d("TAG", "favorite: "+list.get(i));
-        }
         userRepository=new UserRepository(dbHelper);
         String username = PrefManager.getString(getContext(), "username");
         User user=userRepository.getUserByUsername(username);
+        list=favouriteRepository.getFavorite(user.getId());
+
+        for(int i=0;i<list.size();i++){
+            Log.d("TAG", "favorite: "+list.get(i));
+        }
+
 //        favoriteList = favouriteRepository.getFoodsByUserId(user.getId());
         favoriteList=new ArrayList<>();
         for(int i=0;i<list.size();i++){
@@ -117,17 +119,17 @@ public class FavoriteFragment extends Fragment implements IClick {
         for(int i=0;i<favoriteList.size();i++){
             Log.d("TAG", "fasvorite: "+ favoriteList.get(i).getName());
         }
-        foodAdapter = new FoodAdapter(favoriteList,getContext(),FavoriteFragment.this);
+        favoriteAdapter = new FoodAdapter(favoriteList,getContext(),FavoriteFragment.this);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this.getContext(),RecyclerView.VERTICAL,false);
         GridLayoutManager gridLayoutManager =new GridLayoutManager(this.getContext(),2);
         rcv.setLayoutManager(gridLayoutManager);
-        rcv.setAdapter(foodAdapter);
-        foodAdapter.notifyDataSetChanged();
+        rcv.setAdapter(favoriteAdapter);
+        favoriteAdapter.notifyDataSetChanged();
     }
     @Override
     public void onClickDeleteFavorite(int foodId, int pos) {
         favoriteList.remove(pos);
-        foodAdapter.notifyDataSetChanged();
+        favoriteAdapter.notifyDataSetChanged();
     }
 
     @Override

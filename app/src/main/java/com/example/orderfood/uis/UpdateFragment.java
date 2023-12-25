@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -112,12 +113,14 @@ public class UpdateFragment extends Fragment {
                     if(image!=null){
                         User user1=new User(user.getId(),username,firstname,lastname,newPass,image,phone,address);
                         userRepository.updateUser(user1,user.getId());
+                        Toast.makeText(getContext(), "Update successful!", Toast.LENGTH_SHORT).show();
+                        navController.navigate(R.id.action_updateFragment_to_userFragment);
                     }else{
                         User user1=new User(user.getId(),username,firstname,lastname,newPass,phone,address);
                         userRepository.updateUser(user1,user.getId());
+                        Toast.makeText(getContext(), "Update successful!", Toast.LENGTH_SHORT).show();
+                        navController.navigate(R.id.action_updateFragment_to_userFragment);
                     }
-                    Toast.makeText(getContext(), "Update successful!", Toast.LENGTH_SHORT).show();
-                    navController.navigate(R.id.action_updateFragment_to_userFragment);
                 }
             }
         });
@@ -142,5 +145,6 @@ public class UpdateFragment extends Fragment {
         edtPhoneNumber.setText(user.getPhoneNumber());
         edtImage.setText(user.getImage());
         edtAddress.setText(user.getAddress());
+        navController= NavHostFragment.findNavController(UpdateFragment.this);
     }
 }

@@ -120,7 +120,6 @@ public class FavoriteFragment extends Fragment implements IClick {
             Log.d("TAG", "fasvorite: "+ favoriteList.get(i).getName());
         }
         favoriteAdapter = new FoodAdapter(favoriteList,getContext(),FavoriteFragment.this);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this.getContext(),RecyclerView.VERTICAL,false);
         GridLayoutManager gridLayoutManager =new GridLayoutManager(this.getContext(),2);
         rcv.setLayoutManager(gridLayoutManager);
         rcv.setAdapter(favoriteAdapter);

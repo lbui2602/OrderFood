@@ -1,5 +1,10 @@
 # OrderFood
 Project Mobile App Development
-![Ảnh chụp màn hình 2023-08-25 230436](https://github.com/lbui2602/OrderFood/assets/109037290/b63e75b2-50bd-47e1-8593-0d67e0475ae6)
+Bài tập lớn môn Phát triển ứng dụng trên thiết bị di động
+Các chức năng chính:
++ Đăng kí, đăng nhập, đăng xuất
++ Xem tất cả đồ ăn, xem đồ ăn theo loại, xem chi tiết sản phẩm.
++ Thêm vào yêu thích, thêm, sửa, xóa giỏ hàng.
++ Cập nhật tài khoản.
 
 

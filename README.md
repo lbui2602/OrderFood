@@ -6,8 +6,8 @@ Các chức năng chính:
 + Xem tất cả đồ ăn, xem đồ ăn theo loại, xem chi tiết sản phẩm.
 + Thêm vào yêu thích, thêm, sửa, xóa giỏ hàng.
 + Cập nhật tài khoản.
-  [<img src="![image](https://github.com/lbui2602/OrderFood/assets/109037290/00f2068b-1db5-4693-ac6a-d81bc8696579)
-" width="250"/>](![image](https://github.com/lbui2602/OrderFood/assets/109037290/a4149dc5-60f3-4ce1-b5ff-f35b602c1fad)
-)
+  
 
+
+![Anh1](![O1](https://github.com/lbui2602/OrderFood/assets/109037290/e56e0c0e-1692-4a04-8988-2bd426d96b23)){width=50%}
 

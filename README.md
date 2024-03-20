@@ -1,4 +1,4 @@
-# OrderFood
+# ORDER FOOD
 ## Project Mobile App Development
 ### Các chức năng chính:
 + Đăng kí, đăng nhập, đăng xuất

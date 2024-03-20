@@ -1,13 +1,21 @@
 # OrderFood
-Project Mobile App Development
-Bài tập lớn môn Phát triển ứng dụng trên thiết bị di động
-Các chức năng chính:
+## Project Mobile App Development
+### Các chức năng chính:
 + Đăng kí, đăng nhập, đăng xuất
 + Xem tất cả đồ ăn, xem đồ ăn theo loại, xem chi tiết sản phẩm.
 + Thêm vào yêu thích, thêm, sửa, xóa giỏ hàng.
 + Cập nhật tài khoản.
+
+  ### Hình ảnh màn hình project
+  
+  ![order1](https://github.com/lbui2602/OrderFood/assets/109037290/3c51dccd-0059-454a-ba30-29792f39e80d)
+
+  
+  
+  ![order2](https://github.com/lbui2602/OrderFood/assets/109037290/da7f7aba-a2d8-4233-8410-a1e7ea01db1d)
+
+
   
 
 
-![Anh1](![O1](https://github.com/lbui2602/OrderFood/assets/109037290/e56e0c0e-1692-4a04-8988-2bd426d96b23)){width=50%}
 
